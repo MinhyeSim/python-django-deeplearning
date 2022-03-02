@@ -34,6 +34,10 @@ def main():
             q6 = Quiz06RandomGenerator(int(input('숫자1')),int(input('숫자2')))
             print(random.q6)
 
+        elif menu == '7':
+            q7 = Quiz07RandomChoice()
+            q7.chooseMember()
+
 
 class Quiz01Calculater:
 
@@ -126,7 +130,11 @@ class Quiz07RandomChoice(object) :
                         '심민혜', '권솔이','김지혜' , '하진희' , '최은아',
                         '최민서', '한성수', '김윤섭', '김승현',
                         "강 민", "최건일", "유재혁", "김아름", "장원종" ]
-
+    def chooseMember(self):
+        ran = myRandom(0, 23)
+        print(f'랜덤값 : {ran}')
+        return self.members[ran]
+        #return : 리액트로 값을 보낸다.
 class Quiz08Rps(object):
     def __init__(self):
         pass
