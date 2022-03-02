@@ -13,9 +13,12 @@ def main():
             print(f'이름: {q2.name}, 키 : {q2.height}, 몸무게 : {q2.weight}, BMI상태 : {q2.getBmi()}')
 
         elif menu == '3':
+           q3 = Quiz03Grade()
+
+        elif menu == '4':
+            q4 = Quiz04GradeAuto()
             for i in ['국어', '영어', '수학']:
                 print(i)
-
             name = input('이름 : ')
             kor = int(input('국어 : '))
             eng = int(input('영어 : '))
@@ -23,24 +26,22 @@ def main():
             grade = Quiz03Grade(name, kor, eng, math)
             print(f'{name}님의 국어{kor} 영어{eng} 수학 {math} 합계{grade.sum()} 평균{grade.avg()}')
 
-        elif menu == '4':
-            pass
-
         elif menu == '5':
-            import random
-            print(random.randint(1,6))
+            print(Quiz05Dice.cast())
 
         elif menu == '6':
-            q6 = Quiz06RandomGenerator(int(input('숫자1')),int(input('숫자2')))
-            print(random.q6)
+            q6 = None
 
         elif menu == '7':
             q7 = Quiz07RandomChoice()
             q7.chooseMember()
 
+        elif menu =='8':
+            q8 = Quiz08Rps(1) #1 : 가위 2.바위 3. 보
+            print(q8.game())
+
 
 class Quiz01Calculater:
-
     def __init__(self, num1, op, num2):
         self.num1 = num1
         self.op = op
@@ -57,7 +58,6 @@ class Quiz01Calculater:
         pass
 
 class Quiz02Bmi(object) :
-
     def __init__(self,name,height,weight):
         self.name = name
         self.height = height
@@ -93,10 +93,6 @@ class Quiz03Grade(object) :
         return  self.kor + self.eng + self.math
     def avg(self):
         return self.kor + self.eng + self.math /3
-    def getGrade(self):
-        pass
-    def chkPass(self) : #60점이상이면 합격
-            pass
 
 class Quiz04GradeAuto(object) :
     def __init__(self,name,kor,eng,math):
@@ -112,11 +108,15 @@ class Quiz04GradeAuto(object) :
     def getGrade(self):
         pass
     def chkPass(self) : #60점이상이면 합격
-            pass
+        pass
+
+def myRandom(start, end):
+    return random.randint(start, end)
 
 class Quiz05Dice(object) :
-    def __init__(self):
-        self.random = random
+    @staticmethod
+    def cast():
+        return myRandom(1,6)
 
 class Quiz06RandomGenerator(object):
     def getRandomGenerator(self):
@@ -131,43 +131,69 @@ class Quiz07RandomChoice(object) :
                         '최민서', '한성수', '김윤섭', '김승현',
                         "강 민", "최건일", "유재혁", "김아름", "장원종" ]
     def chooseMember(self):
-        ran = myRandom(0, 23)
-        print(f'랜덤값 : {ran}')
-        return self.members[ran]
-        #return : 리액트로 값을 보낸다.
+        return self.members[myRandom(0, 23)]
+
 class Quiz08Rps(object):
-    def __init__(self):
-        pass
+    #외부에서 값을 받아오는지 아닌지 먼저 생각 -> 외부 값이 필요함
+    def __init__(self,player):
+        #외부에서 값을 받아야 하기 때문에 user기재
+        self.player = player
+        self.computer = myRandom(1,3)
+
+    def game(self):
+        c = self.computer
+        p = self.player
+        #1 : 가위   2: 바위  3: 보
+        rps = ['가위', '바위', '보']
+        if p == 1:
+            if c == 1:
+                res = f'플레이어: {rps[0]}, 컴퓨터: {rps[0]}, 결과: 무승부'
+            elif c == 2:
+                res = f'플레이어: {rps[0]}, 컴퓨터: {rps[1]}, 결과: 승리'
+            elif c == 3:
+                res = f'플레이어: {rps[0]}, 컴퓨터: {rps[2]}, 결과: 패배'
+        elif p == 2:
+            if c == 1:
+                res = f'플레이어: {rps[1]}, 컴퓨터: {rps[0]}, 결과: 패배'
+            elif c == 2:
+                res = f'플레이어: {rps[1]}, 컴퓨터: {rps[1]}, 결과: 무승부'
+            elif c == 3:
+                res = f'플레이어: {rps[1]}, 컴퓨터: {rps[2]}, 결과: 승리'
+        elif p == 3:
+            if c == 1:
+                res = f'플레이어: {rps[2]}, 컴퓨터: {rps[0]}, 결과: 승리'
+            elif c == 2:
+                res = f'플레이어: {rps[2]}, 컴퓨터: {rps[1]}, 결과: 패배'
+            elif c == 3:
+                res = f'플레이어: {rps[2]}, 컴퓨터: {rps[2]}, 결과: 무승부'
+        else :
+            res = '1~3 입력'
+
+        return res
 
 class Quiz09GetPrime(object):
     def __init__(self):
         pass
 
-
 class Quiz10LeapYear(object):
     def __init__(self):
         pass
-
 
 class Quiz11NumberGolf(object):
     def __init__(self):
         pass
 
-
 class Quiz12Lotto(object):
     def __init__(self):
         pass
-
 
 class Quiz13Bank(object):  # 이름, 입금, 출금만 구현
     def __init__(self):
         pass
 
-
 class Quiz14Gugudan(object):  # 책받침구구단
     def __init__(self):
         pass
-
 
 if __name__ == '__main__':
    main()
