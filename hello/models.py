@@ -111,7 +111,6 @@ class Quiz08Rps(object):
         p = self.player
         score = self.player - self.computer
         # 1 : 가위   2: 바위  3: 보
-        rps = ['가위', '바위', '보']
         if score == 0:
             res = f'플레이어: {p}, 컴퓨터: {c}, 결과: 무승부'
         elif score == -1 or score == 2:
@@ -131,6 +130,15 @@ class Quiz10LeapYear(object):
     def __init__(self, year):
         self.year = year
 
+    def leapyear(self):
+        y = self.year
+
+        if (y & 4 == 0 and y % 100 != 0) or y % 400 == 0:
+           res = '윤년'
+
+        else:
+           res = '평년'
+        return res
 
 class Quiz11NumberGolf(object):
     def __init__(self):
