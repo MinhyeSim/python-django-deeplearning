@@ -1,7 +1,10 @@
 import random
 def main():
     while 1:
-        menu = input('0.Exit 1.계산기 (+, -, *, /) 2.BMi 3.Grade 4.GradeAuto 5.Dice ')
+        menu = input('0.Exit 1.계산기 (+, -, *, /) 2.BMi 3.Grade 4.GradeAuto \n '
+                     '5.Dice 6.Random 7.Choice 8.Rps 9.GetPrime 10.Leap Year \n'
+                     '11.NumberGolf 12.Lotto 13.Bank 14.Gugudan')
+
         if menu == 0:
             break
         elif menu == '1':
@@ -13,7 +16,7 @@ def main():
             print(f'이름: {q2.name}, 키 : {q2.height}, 몸무게 : {q2.weight}, BMI상태 : {q2.getBmi()}')
 
         elif menu == '3':
-           q3 = Quiz03Grade()
+            q3 = Quiz03Grade()
 
         elif menu == '4':
             q4 = Quiz04GradeAuto()
@@ -38,6 +41,14 @@ def main():
 
         elif menu =='8':
             q8 = Quiz08Rps(1) #1 : 가위 2.바위 3. 보
+            print(q8.game())
+
+        elif menu == '9':
+            q9 = Quiz09GetPrime()
+            print(q8.game())
+
+        elif menu == '10':
+            q10 = Quiz10LeapYear()
             print(q8.game())
 
 
@@ -72,7 +83,7 @@ class Quiz02Bmi(object) :
 
 
     def getBmi(self):
-        res = self.weight/ (self.height * self.height) *10000
+        res = self.weight/ (self.height * self.height) * 10000
         if res > 25:
             return f'비만'
         elif res > 23:
@@ -127,47 +138,31 @@ class Quiz07RandomChoice(object) :
     def __init__(self): #803호에서 랜덤으로 1명 이름 추출
         self.members = ['홍정명', '노홍주', '전종현', '정경준', '양정오',
                         '권혜민', '서성민', '조현국', '김한슬', '김진영',
-                        '심민혜', '권솔이','김지혜' , '하진희' , '최은아',
+                        '심민혜', '권솔이', '김지혜', '하진희', '최은아',
                         '최민서', '한성수', '김윤섭', '김승현',
-                        "강 민", "최건일", "유재혁", "김아름", "장원종" ]
+                        '강 민', '최건일',  '유재혁', '김아름', '장원종']
     def chooseMember(self):
         return self.members[myRandom(0, 23)]
 
 class Quiz08Rps(object):
     #외부에서 값을 받아오는지 아닌지 먼저 생각 -> 외부 값이 필요함
     def __init__(self,player):
-        #외부에서 값을 받아야 하기 때문에 user기재
-        self.player = player
+        #외부에서 값을 받아야 하기 때문에 player기재
+        self.player = myRandom(1,3)
         self.computer = myRandom(1,3)
 
     def game(self):
         c = self.computer
         p = self.player
+        score = self.player-self.computer
         #1 : 가위   2: 바위  3: 보
         rps = ['가위', '바위', '보']
-        if p == 1:
-            if c == 1:
-                res = f'플레이어: {rps[0]}, 컴퓨터: {rps[0]}, 결과: 무승부'
-            elif c == 2:
-                res = f'플레이어: {rps[0]}, 컴퓨터: {rps[1]}, 결과: 승리'
-            elif c == 3:
-                res = f'플레이어: {rps[0]}, 컴퓨터: {rps[2]}, 결과: 패배'
-        elif p == 2:
-            if c == 1:
-                res = f'플레이어: {rps[1]}, 컴퓨터: {rps[0]}, 결과: 패배'
-            elif c == 2:
-                res = f'플레이어: {rps[1]}, 컴퓨터: {rps[1]}, 결과: 무승부'
-            elif c == 3:
-                res = f'플레이어: {rps[1]}, 컴퓨터: {rps[2]}, 결과: 승리'
-        elif p == 3:
-            if c == 1:
-                res = f'플레이어: {rps[2]}, 컴퓨터: {rps[0]}, 결과: 승리'
-            elif c == 2:
-                res = f'플레이어: {rps[2]}, 컴퓨터: {rps[1]}, 결과: 패배'
-            elif c == 3:
-                res = f'플레이어: {rps[2]}, 컴퓨터: {rps[2]}, 결과: 무승부'
+        if score == 0:
+           res = f'플레이어: {p}, 컴퓨터: {c}, 결과: 무승부'
+        elif score == -1 or score == 2 :
+           res = f'플레이어: {p}, 컴퓨터: {c}, 결과: 승리'
         else :
-            res = '1~3 입력'
+           res = f'플레이어: {p}, 컴퓨터: {c}, 결과: 패배'
 
         return res
 
@@ -176,8 +171,8 @@ class Quiz09GetPrime(object):
         pass
 
 class Quiz10LeapYear(object):
-    def __init__(self):
-        pass
+    def __init__(self, year):
+        self.year = year
 
 class Quiz11NumberGolf(object):
     def __init__(self):
