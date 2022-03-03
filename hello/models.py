@@ -7,15 +7,20 @@ class Quiz01Calculater:
         self.op = op
         self.num2 = num2
 
-    def calc(self):
-        self.add()
-        self.sub()
+
+
 
     def add(self):
         return self.num1 + self.num2
 
     def sub(self):
-        pass
+        return self.num1 - self.num2
+
+    def mul(self):
+        return self.num1 * self.num2
+
+    def div(self):
+        return self.num1 / self.num2
 
 
 class Quiz02Bmi(object):

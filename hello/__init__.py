@@ -10,8 +10,18 @@ if __name__ == '__main__':
         if menu == 0:
             break
         elif menu == '1':
-             q1 = Quiz01Calculater(int(input('첫번째 수')), int(input('두번째 수')))
-             print(f'{q1.num1} + {q1.num2} =  {q1.add()}')
+             q1 = Quiz01Calculater(int(input('첫번째 수')), input('연산자'),int(input('두번째 수')))
+
+             if q1.op == '+':
+                 res = q1.add()
+             elif q1.op == '-':
+                 res = q1.sub()
+             elif q1.op == '*':
+                 res = q1.mul()
+             elif q1.op == '/':
+                 res = q1.div()
+
+             print(f'{q1.num1} {q1.op} {q1.num2} =  {res}')
 
         elif menu == '2':
             member = Member()
