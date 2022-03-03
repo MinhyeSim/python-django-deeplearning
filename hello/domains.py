@@ -20,7 +20,7 @@ class Member :
     def height(self,height): self._height = height
 
     @property
-    def weight(self) -> float : return self._weight
+    def weight(self) -> float : return self._weight;
 
     @weight.setter
-    def weight(self,weight): self._weight = weight;
+    def weight(self,weight): self._weight = weight
