@@ -1,6 +1,6 @@
 import random
 
-from
+from hello.domains import myRandom, my100, Member, members
 
 
 class Quiz00:
@@ -8,21 +8,25 @@ class Quiz00:
         a = my100()
         b = my100()
         o = ['+','-','*','/','%']
-        o[''] = myRandom(0,4)
-        if (o[''] =='+') :
+        o2 = myRandom(0,4)
+        s =o[o2]
+        if (s =='+'):
             c = self.add(a,b)
-            print(c)
-        elif(o[''] == '-'):
+
+        elif(s == '-'):
             c = self.sub(a,b)
-            print(c)
-        elif(o[''] == '*'):
+
+        elif(s == '*'):
             c = self.mul(a,b)
-            print(c)
-        elif(o[''] == '')
 
+        elif(s == '/'):
+            c = self.div(a,b)
 
-
+        elif(s == '%'):
+            c = self.mod(a,b)
+        print(c)
         return None
+
 
     def add(self, a, b) -> float:
         return a + b
@@ -40,19 +44,20 @@ class Quiz00:
         return a % b
 
     def quiz01bmi(self):
-        this = Member()
-        this.name = '홍길동'
-        this.height = 170.8
-        this.weight = 120.8
-        res = this.weight / (this.height * this.height) * 10000
-        if res > 25:
-            return f'비만'
-        elif res > 23:
-            return f'과체중'
-        elif res > 18.5:
-            return f'정상'
+        name = members()
+        h = myRandom(100,200)
+        w = myRandom(10,100)
+        bmires = w / (h * h) * 10000
+        if bmires > 25:
+            res = '비만'
+        elif bmires > 23:
+            res = '과체중'
+        elif bmires > 18.5:
+            res = '정상'
         else:
-            return f'저체중'
+            res = f'저체중'
+
+        print(f'님은 {res}입니다')
 
     def quiz02dice(self):
         return myRandom(1, 6)
@@ -102,14 +107,14 @@ class Quiz00:
         pass
 
     def quiz05grade(self):
-        kor = myRandom(0,100)
+        kor = myRandom(0, 100)
         eng = myRandom(0, 100)
         math = myRandom(0, 100)
-        sum = self.sum(kor, eng, math)
-        avg = self.agv(kor, eng, math)
-        grade = self.getGrade()
-        passChk = self.passChk()
-        return [sum, avg, grade, passChk]
+        sum = kor+eng+math
+        avg = (kor+eng+math)/3
+        grade = ['A','B','C','D','E','F']
+        
+        return [sum, avg, grade]
 
     def sum(self):
         return self.kor + self.eng + self.math

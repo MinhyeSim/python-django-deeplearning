@@ -1,25 +1,8 @@
 import random
 
-class Quiz00:
-    def quiz00calculator(self)-> float:
-        self.num1 = num1
-        self.op = op
-        self.num2 = num2
-
-    def add(self):
-        return self.num1 + self.num2
-
-    def sub(self):
-        return self.num1 - self.num2
-
-    def mul(self):
-        return self.num1 * self.num2
-
-    def div(self):
-        return self.num1 / self.num2
 
 
-    def getBmi(member):
+def getBmi(member):
         this = member
         res = this.weight / (this.height * this.height) * 10000
         if res > 25:
