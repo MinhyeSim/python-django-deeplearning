@@ -1,11 +1,23 @@
 from models import Quiz01Calculater, Quiz02Bmi, Quiz03Grade, Quiz04GradeAuto, Quiz05Dice, Quiz07RandomChoice, Quiz08Rps, \
-    Quiz09GetPrime, Quiz10LeapYear
+    Quiz09GetPrime, Quiz10LeapYear, Quiz06RandomGenerator
 from domains import Member
+from hello.domains import Member
+from hello.quiz00 import Quiz00
+from hello.quiz10 import Quiz10
+from hello.quiz20 import Quiz20
+from hello.quiz30 import Quiz30
+from hello.quiz40 import Quiz40
 if __name__ == '__main__':
+    q0 = Quiz00()
+    q1 = Quiz10()
+    q2 = Quiz20()
+    q3 = Quiz30()
+    q4 = Quiz40()
     while 1:
         menu = input('0.Exit 1.계산기 (+, -, *, /) 2.Bmi 3.Grade 4.Grade Auto\n'
                      '5.Dice 6.Random 7.Choice 8.Rps 9.Get Prime 10.Leap Year\n'
-                     '11.Number Golf 12.Lotto 13.Bank 14.Gugudan')
+                     '11.Number Golf 12.Lotto 13.Bank 14.Gugudan 15. 16. 17.소수 18. 19. 20\n'
+                     '21. 22. 23. 24. 25. 26. 27. 28. 29. 30. 31. 32.')
 
         if menu == 0:
             break
@@ -50,7 +62,8 @@ if __name__ == '__main__':
             print(Quiz05Dice.cast())
 
         elif menu == '6':
-            q6 = None
+            q6 = Quiz06RandomGenerator()
+            print(q6.getRandom())
 
         elif menu == '7':
             q7 = Quiz07RandomChoice()
@@ -62,8 +75,39 @@ if __name__ == '__main__':
 
         elif menu == '9':
             q9 = Quiz09GetPrime()
-            print(q8.game())
+            print(q9.game())
 
         elif menu == '10':
             q10 = Quiz10LeapYear(int(input('윤년 평년 구하기 ')))
             print(f'{q10.year}은{q10.leapyear()}입니다.')
+
+        elif menu == '11':
+            q11 = Quiz09GetPrime()
+            print(q11.game())
+
+        elif menu == '12':
+            q9 = Quiz09GetPrime()
+            print(q8.game())
+
+        elif menu == '13':
+            q9 = Quiz09GetPrime()
+            print(q8.game())
+
+        elif menu == '14':
+            q9 = Quiz09GetPrime()
+            print(q8.game())
+
+        elif menu == '17': q1.quiz17prime()
+
+        elif menu == '18': q1.quiz18golf()
+
+
+        elif menu == '30':
+            print(Quiz30.quiz30list())
+
+        elif menu == '31':
+            print(Quiz30.quiz30list())
+        elif menu == '32':
+            print(Quiz30.quiz30list())
+
+

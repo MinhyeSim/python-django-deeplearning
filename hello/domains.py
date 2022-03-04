@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from random import random
 
 @dataclass
 class Member :
@@ -24,3 +25,6 @@ class Member :
 
     @weight.setter
     def weight(self,weight): self._weight = weight
+
+def myRandom(start, end): return random.randint(start, end)
+def my100(): return myRandom(1,100)

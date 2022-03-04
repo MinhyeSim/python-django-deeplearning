@@ -1,14 +1,10 @@
 import random
 
-
-class Quiz01Calculater:
-    def __init__(self, num1, op, num2):
+class Quiz00:
+    def quiz00calculator(self)-> float:
         self.num1 = num1
         self.op = op
         self.num2 = num2
-
-
-
 
     def add(self):
         return self.num1 + self.num2
@@ -23,8 +19,6 @@ class Quiz01Calculater:
         return self.num1 / self.num2
 
 
-class Quiz02Bmi(object):
-    @staticmethod
     def getBmi(member):
         this = member
         res = this.weight / (this.height * this.height) * 10000
@@ -36,7 +30,6 @@ class Quiz02Bmi(object):
             return f'정상'
         else:
             return f'저체중'
-
 
 class Quiz03Grade(object):
     def __init__(self, name, kor, eng, math):
@@ -50,7 +43,6 @@ class Quiz03Grade(object):
 
     def avg(self):
         return self.kor + self.eng + self.math / 3
-
 
 class Quiz04GradeAuto(object):
     def __init__(self, name, kor, eng, math):
@@ -71,7 +63,6 @@ class Quiz04GradeAuto(object):
     def chkPass(self):  # 60점이상이면 합격
         pass
 
-
 def myRandom(start, end):
     return random.randint(start, end)
 
@@ -83,8 +74,8 @@ class Quiz05Dice(object):
 
 
 class Quiz06RandomGenerator(object):
-    def getRandomGenerator(self):
-        return random.randint(int(input('숫자1'), int(input('숫자2'))))
+    def getRandom(self):
+        return myRandom(int(input('첫번째 숫자')),int(input('두번째 숫자')))
 
 
 class Quiz07RandomChoice(object):
