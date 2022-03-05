@@ -64,47 +64,24 @@ class Quiz00:
 
     def quiz03rps(self):
         c = myRandom(1, 3)
-        p = input('가위', '바위', '보')
-        # 1 가위 2  바위 3 보
-        rps = ['가위', '바위', '보']
-        print(' ----------- 1 ------------')
-        if p == 1:
-            if c == 1:
-                res = f'플레이어: {rps[0]} , 컴퓨터: {rps[0]}, 결과: 무승부'
-            elif c == 2:
-                res = f'플레이어: {rps[0]} , 컴퓨터: {rps[1]}, 결과: 패배'
-            elif c == '3':
-                res = f'플레이어: {rps[0]} , 컴퓨터: {rps[2]}, 결과: 승리'
-        elif p == 2:
-            if c == 1:
-                res = '승리'
-            elif c == 2:
-                res = '무승부'
-            elif c == 3:
-                res = '패배'
-        elif p == 3:
-            if c == 1:
-                res = '패배'
-            elif c == 2:
-                res = '승리'
-            elif c == 3:
-                res = '무승부'
+        p = myRandom(1, 3)
+        score = p-c
+        # 1:가위 2:바위 3:보
+        if score == 0:
+            res = '무승부'
+        elif score == -1 or score == 2:
+            res = '승리'
         else:
-            res = '1~3 입력'
-        print(res)
-        print(' ----------- 2 ------------')
-        if p == c:
-            res = f'플레이어:{rps[p - 1]}, 컴퓨터:{rps[c - 1]}, 결과:무승부'
-        elif p - c == 1 or p - c == -2:
-            res = f'플레이어:{rps[p - 1]}, 컴퓨터:{rps[c - 1]}, 결과:승리'
-        elif p - c == -1 or p - c == 2:
-            res = f'플레이어:{rps[p - 1]}, 컴퓨터:{rps[c - 1]}, 결과:패배'
-        else:
-            res = '1~3 입력'
-        print(res)
+            res = '패배'
+        print(f'플레이어:{p} 컴퓨터:{c} 결과:{res}')
 
     def quiz04leap(self):
-        pass
+        y = myRandom(1000,3000)
+        if (y & 4 == 0 and y % 100 != 0) or y % 400 == 0:
+            res = '윤년'
+        else:
+            res = '평년'
+        print(f'{y}년은 {res}입니다')
 
     def quiz05grade(self):
         kor = myRandom(0, 100)
@@ -133,7 +110,7 @@ class Quiz00:
                    '심민혜', '권솔이', '김지혜', '하진희', '최은아',
                    '최민서', '한성수', '김윤섭', '김승현',
                    "강 민", "최건일", "유재혁", "김아름", "장원종"]
-        return members[myRandom(0, 23)]
+        print(members[myRandom(0, 23)])
 
     def quiz07lotto(self):
         pass
