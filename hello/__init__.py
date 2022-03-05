@@ -25,88 +25,47 @@ if __name__ == '__main__':
         elif menu == '06': q0.quiz06memberChoice()
         elif menu == '07': q0.quiz07lotto()
         elif menu == '08': q0.quiz08bank()
-        elif menu == '09':
-            q0.quiz09gugudan()
-        elif menu == '10':
-            q1.quiz10bubble()
-        elif menu == '11':
-            q1.quiz11insertion()
-        elif menu == '12':
-            q1.quiz12selection()
-        elif menu == '13':
-            q1.quiz13quick()
-        elif menu == '14':
-            q1.quiz14merge()
-        elif menu == '15':
-            q1.quiz15magic()
-        elif menu == '16':
-            q1.quiz16zigzag()
-        elif menu == '17':
-            q1.quiz17prime()
-        elif menu == '18':
-            q1.quiz18golf()
-        elif menu == '19':
-            q1.quiz19booking()
-        elif menu == '20':
-            q2.quiz20list()
-        elif menu == '21':
-            q2.quiz21tuple()
-        elif menu == '22':
-            q2.quiz22dict()
-        elif menu == '23':
-            q2.quiz23listcom()
-        elif menu == '24':
-            q2.quiz24zip()
-        elif menu == '25':
-            q2.quiz25dictcom()
-        elif menu == '26':
-            q2.quiz26map()
-        elif menu == '27':
-            q2.quiz27()
-        elif menu == '28':
-            q2.quiz28()
-        elif menu == '29':
-            q2.quiz29()
-        elif menu == '30':
-            q2.quiz30()
-        elif menu == '31':
-            q2.quiz31()
-        elif menu == '32':
-            q2.quiz32()
-        elif menu == '33':
-            q2.quiz33()
-        elif menu == '34':
-            q2.quiz34()
-        elif menu == '35':
-            q2.quiz35()
-        elif menu == '36':
-            q2.quiz36()
-        elif menu == '37':
-            q2.quiz37()
-        elif menu == '38':
-            q2.quiz38()
-        elif menu == '39':
-            q2.quiz39()
-        elif menu == '40':
-            q4.quiz40()
-        elif menu == '41':
-            q4.quiz41()
-        elif menu == '42':
-            q4.quiz42()
-        elif menu == '43':
-            q4.quiz43()
-        elif menu == '44':
-            q4.quiz44()
-        elif menu == '45':
-            q4.quiz45()
-        elif menu == '46':
-            q4.quiz46()
-        elif menu == '47':
-            q4.quiz47()
-        elif menu == '48':
-            q4.quiz48()
-        elif menu == '49':
-            q4.quiz49()
+        elif menu == '09': q0.quiz09gugudan()
+        elif menu == '10': q1.quiz10bubble()
+        elif menu == '11': q1.quiz11insertion()
+        elif menu == '12': q1.quiz12selection()
+        elif menu == '13': q1.quiz13quick()
+        elif menu == '14': q1.quiz14merge()
+        elif menu == '15': q1.quiz15magic()
+        elif menu == '16': q1.quiz16zigzag()
+        elif menu == '17': q1.quiz17prime()
+        elif menu == '18': q1.quiz18golf()
+        elif menu == '19': q1.quiz19booking()
+        elif menu == '20': q2.quiz20list()
+        elif menu == '21': q2.quiz21tuple()
+        elif menu == '22': q2.quiz22dict()
+        elif menu == '23': q2.quiz23listcom()
+        elif menu == '24': q2.quiz24zip()
+        elif menu == '25': q2.quiz25dictcom()
+        elif menu == '26': q2.quiz26map()
+        elif menu == '27': q2.quiz27()
+        elif menu == '28': q2.quiz28()
+        elif menu == '29': q2.quiz29()
+        elif menu == '30': q2.quiz30()
+        elif menu == '31': q2.quiz31()
+        elif menu == '32': q2.quiz32()
+        elif menu == '33': q2.quiz33()
+        elif menu == '34': q2.quiz34()
+        elif menu == '35': q2.quiz35()
+        elif menu == '36': q2.quiz36()
+        elif menu == '37': q2.quiz37()
+        elif menu == '38': q2.quiz38()
+        elif menu == '39': q2.quiz39()
+        elif menu == '40': q4.quiz40()
+        elif menu == '41': q4.quiz41()
+        elif menu == '42': q4.quiz42()
+        elif menu == '43': q4.quiz43()
+        elif menu == '44': q4.quiz44()
+        elif menu == '45': q4.quiz45()
+        elif menu == '46': q4.quiz46()
+        elif menu == '47': q4.quiz47()
+        elif menu == '48': q4.quiz48()
+        elif menu == '49': q4.quiz49()
         else:
             break
 

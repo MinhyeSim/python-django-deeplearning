@@ -9,7 +9,7 @@ class Quiz00:
         b = my100()
         o = ['+','-','*','/','%']
         o2 = myRandom(0,4)
-        s =o[o2]
+        s = o[o2]
         if (s =='+'):
             c = self.add(a,b)
 
@@ -111,22 +111,21 @@ class Quiz00:
         eng = myRandom(0, 100)
         math = myRandom(0, 100)
         sum = kor+eng+math
-        avg = (kor+eng+math)/3
-        grade = ['A','B','C','D','E','F']
-        
-        return [sum, avg, grade]
+        avg = int((sum)/3)
+        grade = ['A','B','C','D','E']
+        if avg == 100:
+            g_index = 0
+        elif avg < 100 and avg >40:
+            g_index = int((99-avg)/10)
+        else:
+            g_index = 5
+        print(f'평균 점수가{avg}(으)로 {grade[g_index]}등급 입니다.')
 
-    def sum(self):
-        return self.kor + self.eng + self.math
-
-    def avg(self):
-        return self.kor + self.eng + self.math / 3
-
-    def grade(self):
-        pass
-
-    def passChk(self):  # 60점이상이면 합격
-        pass
+        if avg >= 60:
+            res = '합격'
+        else:
+            res = '불합격'
+        print(f'국어 : {kor},영어 : {eng}, 수학 : {math} 합격여부 : {res}')
 
     def quiz06memberChoice(self):
         members = ['홍정명', '노홍주', '전종현', '정경준', '양정오',
