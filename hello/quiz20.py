@@ -57,7 +57,16 @@ class Quiz20:
         a.get('class')
         print("class" in a)
 
-    def quiz23listcom(self) -> str: return None
+    def quiz23listcom(self) -> str:
+        print('------legacy-----------')
+        a = [] #list() -> []
+        for i in range(5):
+            a.append(i)
+        print(a)
+        print('-------comprehension-----')
+        a2 = [i for i in range(5)]
+        print(a2)
+        return None
 
     def quiz24zip(self) -> str: return None
 
