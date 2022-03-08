@@ -131,14 +131,13 @@ class Quiz00:
         Account.main()
 
     def quiz09gugudan(self):  # 책받침구구단
-        res = ''
-        for j in range(1,10):
-            for i in range(2,6):
+        for i in range(2,6) :
+            for j in range(1,10) :
+                print(f'{i}*{j}={i*j}')
+            print('\n')
+            #먼저 출력이 시작 되는 for loop의 순서를 생각. 출력되는 결과를 먼저 고려해본다.
 
-                res += f'{i} * {j} = {i * j}\t'
 
-
-        print(res)
 
 
 
