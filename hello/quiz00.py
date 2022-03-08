@@ -1,6 +1,6 @@
 import random
 
-from hello.domains import myRandom, my100, Member, members
+from hello.domains import myRandom, my100, members
 
 
 class Quiz00:
@@ -113,12 +113,14 @@ class Quiz00:
         print(f'국어 : {kor},영어 : {eng}, 수학 : {math} 합격여부 : {res}')
 
     def quiz06memberChoice(self):
+
         members = ['홍정명', '노홍주', '전종현', '정경준', '양정오',
                    "권혜민", "서성민", "조현국", "김한슬", "김진영",
                    '심민혜', '권솔이', '김지혜', '하진희', '최은아',
                    '최민서', '한성수', '김윤섭', '김승현',
                    "강 민", "최건일", "유재혁", "김아름", "장원종"]
-        print(members[myRandom(0, 24)])
+
+        return members[myRandom(0, 24)]
 
     def quiz07lotto(self):
         mylotto = random.sample(range(1,46),6)
@@ -126,12 +128,20 @@ class Quiz00:
         print(f'{mylotto}')
 
     def quiz08bank(self):  # 이름, 입금, 출금만 구현
-        print(f'{Account().to_string()}')
-        a = Account()
-        a.main()
+        Account.main()
 
     def quiz09gugudan(self):  # 책받침구구단
-        pass
+        res = ''
+        for j in range(1,10):
+            for i in range(2,6):
+
+                res += f'{i} * {j} = {i * j}\t'
+
+
+        print(res)
+
+
+
 
 '''
 08번 문제 해결을 위한 클래스는 다음과 같다. 
@@ -143,15 +153,14 @@ class Quiz00:
 금액은 100만원 ~ 999만원 사이로 랜덤하게 입금된다.
 '''
 class Account(object):
-    def __init__(self):
+    def __init__(self,name,account_number,money):
         self.BANK_NAME = '비트은행'
-        self.name = members()[myRandom(0,23)]
+        self.name = Quiz00().quiz06memberChoice() if name == None else name
         #self.account_number = f'{myRandom(0,1000):0>3}-{myRandom(0,1000):0>2}-{myRandom(0,1000):0>6}'
-        self.account_number = self.creat_account_number()
-        self.money = myRandom(100, 999)
+        self.account_number = self.creat_account_number() if account_number == None else account_number
+        self.money = myRandom(100, 999) if money == None else money
 
     def to_string(self):
-
         return f'은행 : {self.BANK_NAME},' \
                f'입금자 : {self.name}  ' \
                f'계좌번호 : {self.account_number} ' \
@@ -159,11 +168,6 @@ class Account(object):
 
     def creat_account_number(self):
         '''
-        #코딩을 할 때 먼저 계좌번호 ls를 몇가지를 만들어야 하는가 확인 => "3자리" -"2자리" - "6자리"이므로 총 3개의 ls 생성
-        #다음 range가 각 몇가지로 줘야하는지 확인한다 => "3"가지 -"2"가지 -"6"가지 이므로 range()에 각 값을 기입
-        #랜덤값을 준다 = myRadom (0,10)입력
-        #"-"를 사용하기 위해 str를 붙인다.
-        #모든 값이 출력
         ls = [str(myRandom(0,10)) for i in range(3)]
         ls = ls.append("-")
         ls += [str(myRandom(0,10)) for i in range(2)]
@@ -171,45 +175,68 @@ class Account(object):
         ls += [str(myRandom(0,10)) for i in range(6)]
         ls = ls.append("-")
         return "".join(ls)'''
-        #return "".join([i if str(myRandom(0,9)) else '-' for i in range(13)])
         return "".join(['-' if i==3 or i ==6 else str(myRandom(0,9)) for i in range(13)])
-        #return "".join([str(myRandom(0,9)) if i != 3 and i != 6 else '-' for i in range(13)])
-        #for 뒤에 있는 "i"는 index가 아니라 element이다
 
 
-    def main(self):
+
+    def deposit(self,ls, account_number,money):
+        for i,j in enumerate(ls):
+            if j.account_number == account_number:
+                bank = ls[i]
+
+        #전체(ls)를 불러 와야 한다.
+                a = ls.account_number
+        #전체에서 계좌랑 돈을 불러와야한다.
+        m = money
+
+
+        print(f'계좌번호 : {a},입금 : {m} ')
+
+
+
+    @staticmethod
+    def find_account(ls, account_number):
+        #return ''.join([j.to_string() if j.account_number == account_number else '찾는 계좌 아님' for i,j in enumerate(ls)])
+        for i, j in enumerate(ls):
+            if j.account_number == account_number:
+                a = ls[i]
+        return a.money
+
+    @staticmethod
+    def del_account(ls,account_number):
+        for i,j in enumerate(ls):
+            if j.account_number == account_number:
+                del ls[i]
+
+
+    @staticmethod
+    def main():
         ls = []
-        #ls []는 list이다.
         while 1 :
-            menu = input('0.종료 1.계좌개설 2.계좌내용 3.입금 4.출금 5. 계좌해지')
+            menu = input('0.종료 1.계좌개설 2.계좌내용 3.입금 4.출금 5.계좌해지 6.계좌조회')
             if menu == '0' :
                 break
             if menu == '1' :
-                acc = Account()
-                #Account() 는 생성자. acc는 객체이다
+                acc = Account(None,None,None)
                 print(f'{acc.to_string()}... 개설되었습니다.')
                 ls.append(acc)
-                #mean => acc(Account())를 리스트로 쌓아간다
-            elif menu == '2' : #계좌값을 출력하려고한다.
-                a = "".join([i.to_string() for i in ls])
-                #ls = account 여러개. i는 여러개의 accout중의 1개. i.to_string()은 그 account에서 to_string 값을 불러오라는 뜻이다.
-                #i를 이름 바꿔도 되는 이유?
+            elif menu == '2' :
+                a = "\n".join([i.to_string() for i in ls])
                 print(a)
-                #"i"는 ls(list)의 입력값을 출력한다.
-                # for 뒤에 있는 i는 ls중의 하나이다.
-                #[<표현식> for <변수명> in <시퀀스>] => 출력은 뒤에서 한다.
-            elif menu == '3' :
+            elif menu == '3' : #
                 account_number = input('입금할 계좌번호')
                 deposit = input('입금액')
-               #for i,j in enumerate(ls):
-                   #if j.account_number == account_nuber :
+                print()
 
             elif menu == '4' :
                 account_number = input('출금할 계좌번호')
                 money = input('출금액')
                 #추가코드 완성
             elif menu == '5' :
-                account_nuber = input('탈퇴할 계좌번호')
+                Account.del_account(ls,input('탈퇴할 계좌번호'))
+
+            elif menu == '6' :
+                print(Account.find_account(ls,input('조회할 계좌번호')))
             else:
                 print('Wrong Number.. ')
                 continue

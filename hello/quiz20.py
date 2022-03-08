@@ -1,5 +1,8 @@
 import random
+from urllib.request import urlopen
 
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
 
 class Quiz20:
 
@@ -68,7 +71,14 @@ class Quiz20:
         print(a2)
         return None
 
-    def quiz24zip(self) -> str: return None
+    def quiz24zip(self) -> str:
+        url = 'https://music.bugs.co.kr/chart/track/realtime/total'
+        html_doc = urlopen(url)
+        soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
+        artistes = soup.find_all("p", class_="artist")
+        for artist in artistes:
+            print(artist.text)
+        return None
 
     def quiz25dictcom(self) -> str: return None
 
