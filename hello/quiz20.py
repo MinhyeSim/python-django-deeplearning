@@ -84,8 +84,7 @@ class Quiz20:
         titles = soup.find_all('p',{'class':'title'})
         titles = [i.get_text() for i in titles]
         for i in range(0,len(artists)):
-
-        
+            return None
 
         def find_rank(soup):
             for i,j in enumerate(['artist','title']):
