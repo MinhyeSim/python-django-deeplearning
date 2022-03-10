@@ -4,8 +4,9 @@ class Tmp:
         self.speed = 0
         self.oil = 110
 
-    def ctrl_speed(self, speed):
+    def ctrl_speed(self, speed,oil):
         self.speed += speed
+        self.oil = car.oil()
 
     def spend_oil(self, oil): #스피드를 증가하면 오일이 10씩 빠지게 하라.
         self.oil -= oil

@@ -82,27 +82,19 @@ class Quiz20:
 
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
         #HTML코드를 파싱 가능한 형태로 만듦
+        #print(soup.prettify())
 
-        a =[i for i in soup.find_all('p', {'class':'artist'})]
-        # HTML코드에서 <p class = 'artist'>라는 태그의 모든 내용을 가져온다.
+        a = [i for i in soup.find_all('p', {'class':'artist'})]
+        #print(typer(artists)) #<class 'bs4.element.ResulteSet'>
+        a = [i.get_text()for i in a]
+        #print(type(artists))
+        print(''.join(i for i in a))
 
-        # [코딩 흐름 순서]
-        # 1) (처음) a = soup.find_all('p',{'class':'artist'}
-        # 2) a = [ i for i in soup.find_all('p',{'class':'artist'})]
-        # => ResultSet 에러(=<class 'bs4.element.ResultSet'>)가 나서 그 안을 보기 위해 리스트형태로 변경
-        # (즉 Data set 에러이므로 Data Structure 형태로 변경 하여 에러를 확인 )
-        # -> Data Structure 중 List 형태로 바꾸는 것은 개발자가 판단하는 몫이다.
-        # {'' : '' } -> 딕셔너리 구조
-        # 'p' = 필터 (가장 처음으로 해야함)
-        print(''.join(i.get_text() for i in a))
-        #a안의 p태그의 내용을 모두 추출한다.
+        t = [i for i in soup.find_all('p', {'class': 'title'})]
+        print(''.join(i.get_text() for i in t))
 
-        # [코딩 흐름 순사]
-        # 1) (처음) print(a)
-        # 2)
-        # 3) print(''.join(i.string for i in a))
-        # => NoneType 에러가 나서 타입을 .string에서 .get_text로 변경
-        print('----comprehension----')
+        s = [i for i in soup.find_all('p', {'class': 'song'})]
+        print(''.join(i.get_text() for i in t))
 
 
         return None
@@ -127,6 +119,12 @@ class Quiz20:
 
         return None
 
-    def quiz28(self) -> str: return None
+    def quiz28(self) -> str:
+        a = [i if i ==0 or i==0 else i for i in range()]
+        b = [i if i ==0 or i==0 else i for i in []]
+        c = [(i,j)for i,j in enumerate([])]
+
+        return None
+
 
     def quiz29(self) -> str: return None
