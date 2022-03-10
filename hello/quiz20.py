@@ -79,22 +79,23 @@ class Quiz20:
 
         a = [i for i in soup.find_all('p', {'class': 'artist'})]
         a = [i.get_text() for i in a]
-        print(''.join(i for i in a))
+       # print(''.join(i for i in a))
 
         t = [i for i in soup.find_all('p', {'class': 'title'})]
         t = [i.get_text() for i in t]
-        print(''.join(i for i in t))
+       # print(''.join(i for i in t))
 
-        self.name(soup,'artist')
-        print('*'*100)
-        self.name(soup,'title')
-        return None
+        for i,j in enumerate(['artist','title']): #i 는 인덱스 j는 엘리먼트
+            s = [i for i in self.abc(soup,j)]# 하나만 뽑고 싶을때 이터레이터
+            print('\n\n\n'.join(s))
+            print('*'*100)
+            return None
 
     @staticmethod
-    def name(soup, a) -> str:
+    def abc(soup, a) -> str:
         t = [i for i in soup.find_all('p', {'class': a})]
-        t = [i.get_text() for i in t]
-        print(''.join(i for i in t))
+        t2 = [i.get_text() for i in t]
+        return t2
 
     def quiz25dictcom(self) -> str: return None
 
@@ -106,12 +107,9 @@ class Quiz20:
         req = urllib.request.Request(url, headers=headers)
         soup = BeautifulSoup(urlopen(req).read(),'lxml')
         s = [i for i in soup.find_all('div', {'class':'ellipsis rank03'})[1:3]]
-        #3개를 뽑아내고 싶으면 전체에서 3개를 추출해야한다. 따라서 인덱스 값을 준다 ex) [0:3] (=> 인덱스 0번부터 시작해서 출력. 마지막은 마지막값의 -1 일임)
         print('\n'.join(i.get_text().strip() for i in [i for i in soup.find_all('div', {'class':'ellipsis rank03'})[1:3]]))
-        #띄어쓰기를 삭제하기 위해 '\n'와 .strip()를 추가 기재 한다
         print('----한줄로 줄이기----')
         print(''.join(i.get_text() for i in [i for i in soup.find_all('div', {'class':'ellipsis rank03'})[1:3]]))
-        #중복되는 s의 값을 그대로 가져온다.
 
 
         return None
@@ -122,7 +120,6 @@ class Quiz20:
         b = [i if i ==0 or i==0 else i for i in []]
         c = [(i,j)for i,j in enumerate([])]
         '''
-        #리팩토링은 동일한 선에서 메소드를 뽑아야한다.
 
         return None
 
