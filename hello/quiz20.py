@@ -76,24 +76,23 @@ class Quiz20:
         url = 'https://music.bugs.co.kr/chart/track/realtime/total'
         html_doc = urlopen(url)
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
-
+        dict = {}
+        '''
         a = [i for i in soup.find_all('p', {'class': 'artist'})]
         a = [i.get_text() for i in a]
-       # print(''.join(i for i in a))
-
+        # print(''.join(i for i in a))
+        
         t = [i for i in soup.find_all('p', {'class': 'title'})]
         t = [i.get_text() for i in t]
-       # print(''.join(i for i in t))
-
-        for i,j in enumerate(['artist','title']): #i 는 인덱스 j는 엘리먼트
-            print('\n\n\n'.join([i for i in self.abc(soup,j)]))
-            return None
+        # print(''.join(i for i in t))
+        '''
+        return None
 
     @staticmethod
-    def abc(soup, a) -> str:
-        t = [i for i in soup.find_all('p', {'class': a})]
-        t2 = [i.get_text() for i in t]
-        return t2
+    def abc(soup, cls_nm) -> []:
+        ls = [i for i in soup.find_all('p', {'class': cls_nm})]
+        return [i.get_text() for i in ls]
+
 
     def quiz25dictcom(self) -> str: return None
 
