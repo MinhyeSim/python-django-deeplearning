@@ -76,30 +76,37 @@ class Quiz20:
         url = 'https://music.bugs.co.kr/chart/track/realtime/total'
         html_doc = urlopen(url)
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
+        ls1 = self.find_music(soup, 'title')
+        ls2 = self.find_music(soup, 'artist')
         dict = {}
 
-        artists = soup.find_all('p',{'class':'title'})
-        artists = [i.get_test() for i in artists]
+        for i in range(0, len(ls1)):
+            print(type(f'타입 : {ls1[i]}'))
+            dict[ls1[i]] = ls2[i]
+        print(dict)
+        return None
 
+
+    def print_music_list(self,soup):
+        artists = soup.find_all('p',{'class':'artist'})
+        #print(type(artists)) #<class 'bs4.element.ResultSet'>
+        artists = [i.get_text() for i in artists]
+        #print(type(artists))
+        print(''.join(i for i in artists))
         titles = soup.find_all('p',{'class':'title'})
         titles = [i.get_text() for i in titles]
-        for i in range(0,len(artists)):
-            return None
+        print(''.join(i for i in titles))
 
-        def find_rank(soup):
-            for i,j in enumerate(['artist','title']):
-                for i,j in enumerate(self.find_music((soup,j))):
-                    print(f'{i}위 : {j}')
-                print()
-
-
-
+    def find_rank(self,soup):
+        for i,j in enumerate(['artist','title']):
+            for i,j in enumerate(self.find_music(soup,j)):
+                print(f'{i}위 : {j}')
+            print('#'*100)
 
     @staticmethod
     def find_music(soup, cls_nm) -> []:
         ls = [i for i in soup.find_all('p', {'class': cls_nm})]
         return [i.get_text() for i in ls]
-
 
     def quiz25dictcom(self) -> str: return None
 
