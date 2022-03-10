@@ -77,19 +77,27 @@ class Quiz20:
         html_doc = urlopen(url)
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
         dict = {}
-        '''
-        a = [i for i in soup.find_all('p', {'class': 'artist'})]
-        a = [i.get_text() for i in a]
-        # print(''.join(i for i in a))
+
+        artists = soup.find_all('p',{'class':'title'})
+        artists = [i.get_test() for i in artists]
+
+        titles = soup.find_all('p',{'class':'title'})
+        titles = [i.get_text() for i in titles]
+        for i in range(0,len(artists)):
+
         
-        t = [i for i in soup.find_all('p', {'class': 'title'})]
-        t = [i.get_text() for i in t]
-        # print(''.join(i for i in t))
-        '''
-        return None
+
+        def find_rank(soup):
+            for i,j in enumerate(['artist','title']):
+                for i,j in enumerate(self.find_music((soup,j))):
+                    print(f'{i}위 : {j}')
+                print()
+
+
+
 
     @staticmethod
-    def abc(soup, cls_nm) -> []:
+    def find_music(soup, cls_nm) -> []:
         ls = [i for i in soup.find_all('p', {'class': cls_nm})]
         return [i.get_text() for i in ls]
 
