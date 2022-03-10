@@ -1,9 +1,6 @@
 import random
 import urllib.request
-from bs4 import BeautifulSoup
-from urllib.request import urlopen
 import pandas as pd
-
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
@@ -102,9 +99,6 @@ class Quiz20:
             dict[j] = ls2[i]
         print(dict)
 
-
-
-
     def print_music_list(self,soup):
         artists = soup.find_all('p',{'class':'artist'})
         #print(type(artists)) #<class 'bs4.element.ResultSet'>
@@ -139,8 +133,6 @@ class Quiz20:
         print('\n'.join(i.get_text().strip() for i in [i for i in soup.find_all('div', {'class':'ellipsis rank03'})[1:3]]))
         print('----한줄로 줄이기----')
         print(''.join(i.get_text() for i in [i for i in soup.find_all('div', {'class':'ellipsis rank03'})[1:3]]))
-
-
         return None
 
     def quiz28dataframe(self) -> None:
@@ -148,7 +140,5 @@ class Quiz20:
         df = pd.DataFrame.from_dict(dict,orient='index')
         print(df)
         df.to_csv('./save/bugs.csv',sep=',',na_rep='NaN')
-        
-
 
     def quiz29(self) -> str: return None
