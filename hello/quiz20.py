@@ -73,31 +73,28 @@ class Quiz20:
         return None
 
     def quiz24zip(self) -> str:
-        print('------legacy------')
         url = 'https://music.bugs.co.kr/chart/track/realtime/total'
-        #접속할 url
-
         html_doc = urlopen(url)
-        # 해당 url 페이지에서 가져온 HTML코드
-
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
-        #HTML코드를 파싱 가능한 형태로 만듦
-        #print(soup.prettify())
 
-        a = [i for i in soup.find_all('p', {'class':'artist'})]
-        #print(typer(artists)) #<class 'bs4.element.ResulteSet'>
-        a = [i.get_text()for i in a]
-        #print(type(artists))
+        a = [i for i in soup.find_all('p', {'class': 'artist'})]
+        a = [i.get_text() for i in a]
         print(''.join(i for i in a))
 
         t = [i for i in soup.find_all('p', {'class': 'title'})]
-        print(''.join(i.get_text() for i in t))
+        t = [i.get_text() for i in t]
+        print(''.join(i for i in t))
 
-        s = [i for i in soup.find_all('p', {'class': 'song'})]
-        print(''.join(i.get_text() for i in t))
-
-
+        self.name(soup,'artist')
+        print('*'*100)
+        self.name(soup,'title')
         return None
+
+    @staticmethod
+    def name(soup, a) -> str:
+        t = [i for i in soup.find_all('p', {'class': a})]
+        t = [i.get_text() for i in t]
+        print(''.join(i for i in t))
 
     def quiz25dictcom(self) -> str: return None
 
@@ -120,9 +117,12 @@ class Quiz20:
         return None
 
     def quiz28(self) -> str:
+        '''
         a = [i if i ==0 or i==0 else i for i in range()]
         b = [i if i ==0 or i==0 else i for i in []]
         c = [(i,j)for i,j in enumerate([])]
+        '''
+        #리팩토링은 동일한 선에서 메소드를 뽑아야한다.
 
         return None
 
