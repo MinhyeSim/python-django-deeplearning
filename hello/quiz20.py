@@ -86,9 +86,7 @@ class Quiz20:
        # print(''.join(i for i in t))
 
         for i,j in enumerate(['artist','title']): #i 는 인덱스 j는 엘리먼트
-            s = [i for i in self.abc(soup,j)]# 하나만 뽑고 싶을때 이터레이터
-            print('\n\n\n'.join(s))
-            print('*'*100)
+            print('\n\n\n'.join([i for i in self.abc(soup,j)]))
             return None
 
     @staticmethod
