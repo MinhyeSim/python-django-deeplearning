@@ -1,6 +1,8 @@
 import random
 import urllib.request
+from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import pandas as pd
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -72,14 +74,18 @@ class Quiz20:
         print(a2)
         return None
 
-    def quiz24zip(self) -> str:
+    def quiz24zip(self) -> {}:
         url = 'https://music.bugs.co.kr/chart/track/realtime/total'
         html_doc = urlopen(url)
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
         ls1 = self.find_music(soup, 'title')#중복된 키의 값으로 찾지 않기 위해 ls1을 타이틀로 둔다.
         ls2 = self.find_music(soup, 'artist')
-        self.dict2(ls1, ls2) #dict2 호출
-
+        self.dict2(ls1, ls2)
+        dict = {}
+        for i,j in zip(ls1, ls2):
+            dict[i] = j
+        print(dict)
+        return dict
 
     @staticmethod
     def dict1(ls1,ls2) -> None:
@@ -137,14 +143,12 @@ class Quiz20:
 
         return None
 
-    def quiz28(self) -> str:
-        '''
-        a = [i if i ==0 or i==0 else i for i in range()]
-        b = [i if i ==0 or i==0 else i for i in []]
-        c = [(i,j)for i,j in enumerate([])]
-        '''
-
-        return None
+    def quiz28dataframe(self) -> None:
+        dict = self.quiz24zip()
+        df = pd.DataFrame.from_dict(dict,orient='index')
+        print(df)
+        df.to_csv('./save/bugs.csv',sep=',',na_rep='NaN')
+        
 
 
     def quiz29(self) -> str: return None
