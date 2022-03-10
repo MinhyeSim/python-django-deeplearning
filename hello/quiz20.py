@@ -76,15 +76,27 @@ class Quiz20:
         url = 'https://music.bugs.co.kr/chart/track/realtime/total'
         html_doc = urlopen(url)
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
-        ls1 = self.find_music(soup, 'title')
+        ls1 = self.find_music(soup, 'title')#중복된 키의 값으로 찾지 않기 위해 ls1을 타이틀로 둔다.
         ls2 = self.find_music(soup, 'artist')
-        dict = {}
+        self.dict2(ls1, ls2) #dict2 호출
 
+
+    @staticmethod
+    def dict1(ls1,ls2) -> None:
+        dict = {}
         for i in range(0, len(ls1)):
             print(type(f'타입 : {ls1[i]}'))
             dict[ls1[i]] = ls2[i]
         print(dict)
-        return None
+
+    @staticmethod
+    def dict2(ls1,ls2) -> None: #dict1번을 줄인 방법
+        dict = {}
+        for i,j in enumerate(ls1):
+            dict[j] = ls2[i]
+        print(dict)
+
+
 
 
     def print_music_list(self,soup):
