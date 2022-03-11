@@ -137,11 +137,13 @@ class Quiz20:
         # .memberlist(5)[myRandom(0,23)]
         q = Quiz00()
         student = q.quiz06memberChoice()
-        students = [random.choice(members()) for i in range(5)]
-        print(f'{students}')
+        
+        students = [random.choice(members()) for i in range(6)]
+        a = set(students)
+        print(f'2. {a}')
+
         score = [random.randint(0,100) for i in range(5)]
         print(score)
-
 
         return None
 
