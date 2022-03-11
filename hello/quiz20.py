@@ -3,9 +3,9 @@ import urllib.request
 import pandas as pd
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-
 from hello.domains import members
 from quiz00 import Quiz00
+from domains import myRandom
 
 class Quiz20:
 
@@ -134,18 +134,13 @@ class Quiz20:
 
     def quiz25dictcom(self) -> str:
         #리스트로 5명, 0점~ 100점을 랜덤으로 뽑기
-        # .memberlist(5)[myRandom(0,23)]
         q = Quiz00()
-        student = q.quiz06memberChoice()
-        
-        students = [random.choice(members()) for i in range(6)]
-        a = set(students)
-        print(f'2. {a}')
-
-        score = [random.randint(0,100) for i in range(5)]
-        print(score)
-
-        return None
+        c = set([q.quiz06memberChoice() for i in range(5)])
+        while len(c) !=5:
+            c.add(q.quiz06memberChoice())
+        students = list(c)
+        scores = [myRandom(0,100) for i in range(5)]
+        print({i : j for i,j in zip(students, scores)})
 
     def quiz26map(self) -> str: return None
 
@@ -160,14 +155,22 @@ class Quiz20:
         print(''.join(i.get_text() for i in [i for i in soup.find_all('div', {'class':'ellipsis rank03'})[1:3]]))
         return None
 
-
-
-
-
     def quiz28dataframe(self) -> None:
         dict = self.quiz24zip()
         df = pd.DataFrame.from_dict(dict,orient='index')
         print(df)
         df.to_csv('./save/bugs.csv',sep=',',na_rep='NaN')
+    '''
+    다음 결과 출력
+        a   b   c
+    1   1   3   5
+    2   2   4   6
+    '''
+    def quiz29(self) -> object:
+        d1 = {'a':[1,2],'b':[3,4],'c':[5,6]}
+        d = pd.DataFrame(d1, index=[1,2])
+        print(d)
 
-    def quiz29(self) -> str: return None
+
+
+        return None
