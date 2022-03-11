@@ -167,14 +167,12 @@ class Quiz20:
     2   2   4   6
     '''
     def quiz29_pandas_df(self) -> object:
-        d2 = {"1": [1, 3, 5], "2": [2, 4, 6]}
-        df2 = pd.DataFrame.from_dict(d2, orient='index', columns=['a', 'b', 'c'])
+
         columns = [chr(i) for i in range(97, 100)]
         a1 = []
         a2 = []
         a3 = ["1", "2"]
         a4 = [a1, a2]
-
         a = [a1.append(i) if i % 2 == 1 else a2.append(i) for i in range(1, 7)]
         b = {i: j for i, j in zip(a3, a4)}
         df3 = pd.DataFrame.from_dict(b, orient='index', columns=columns)
