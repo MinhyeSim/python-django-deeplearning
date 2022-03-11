@@ -107,23 +107,23 @@ class Quiz20:
     @staticmethod
     def dict3(ls1, ls2) -> None:
         dict = {}
-        for i, j in zip(ls1,ls2):
+        for i, j in zip(ls1, ls2):
             dict[j] = j
         print(dict)
 
-    def print_music_list(self,soup):
+    def print_music_list(self, soup):
         artists = soup.find_all('p',{'class':'artist'})
         #print(type(artists)) #<class 'bs4.element.ResultSet'>
         artists = [i.get_text() for i in artists]
         #print(type(artists))
         print(''.join(i for i in artists))
-        titles = soup.find_all('p',{'class':'title'})
+        titles = soup.find_all('p', {'class':'title'})
         titles = [i.get_text() for i in titles]
         print(''.join(i for i in titles))
 
     def find_rank(self,soup):
-        for i,j in enumerate(['artist','title']):
-            for i,j in enumerate(self.find_music(soup,j)):
+        for i, j in enumerate(['artist', 'title']):
+            for i, j in enumerate(self.find_music(soup, j)):
                 print(f'{i}위 : {j}')
             print('#'*100)
 
@@ -136,11 +136,11 @@ class Quiz20:
         #리스트로 5명, 0점~ 100점을 랜덤으로 뽑기
         q = Quiz00()
         c = set([q.quiz06memberChoice() for i in range(5)])
-        while len(c) !=5:
+        while len(c) != 5:
             c.add(q.quiz06memberChoice())
         students = list(c)
         scores = [myRandom(0,100) for i in range(5)]
-        print({i : j for i,j in zip(students, scores)})
+        print({i: j for i, j in zip(students, scores)})
 
     def quiz26map(self) -> str: return None
 
@@ -157,9 +157,9 @@ class Quiz20:
 
     def quiz28dataframe(self) -> None:
         dict = self.quiz24zip()
-        df = pd.DataFrame.from_dict(dict,orient='index')
+        df = pd.DataFrame.from_dict(dict, orient='index')
         print(df)
-        df.to_csv('./save/bugs.csv',sep=',',na_rep='NaN')
+        df.to_csv('./save/bugs.csv', sep=',', na_rep='NaN')
     '''
     다음 결과 출력
         a   b   c
@@ -169,15 +169,16 @@ class Quiz20:
     def quiz29_pandas_df(self) -> object:
         d2 = {"1": [1, 3, 5], "2": [2, 4, 6]}
         df2 = pd.DataFrame.from_dict(d2, orient='index', columns=['a', 'b', 'c'])
-        columns = ['a', 'b', 'c']
-
-        df3 = pd.DataFrame.from_dict(d2, orient='index', columns=columns)
-        print(df3)
-
+        columns = [chr(i) for i in range(97, 100)]
         a1 = []
         a2 = []
-        a = [a1.append(i) if i % 2 == 1 else a2.append(i) for i in range(1, 7)]
+        a3 = ["1", "2"]
+        a4 = [a1, a2]
 
+        a = [a1.append(i) if i % 2 == 1 else a2.append(i) for i in range(1, 7)]
+        b = {i: j for i, j in zip(a3, a4)}
+        df3 = pd.DataFrame.from_dict(b, orient='index', columns=columns)
+        print(df3)
 
 
 
