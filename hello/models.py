@@ -14,6 +14,7 @@ def getBmi(member):
         else:
             return f'저체중'
 
+
 class Quiz03Grade(object):
     def __init__(self, name, kor, eng, math):
         self.name = name
@@ -26,6 +27,7 @@ class Quiz03Grade(object):
 
     def avg(self):
         return self.kor + self.eng + self.math / 3
+
 
 class Quiz04GradeAuto(object):
     def __init__(self, name, kor, eng, math):
@@ -45,6 +47,7 @@ class Quiz04GradeAuto(object):
 
     def chkPass(self):  # 60점이상이면 합격
         pass
+
 
 def myRandom(start, end):
     return random.randint(start, end)
@@ -113,6 +116,7 @@ class Quiz10LeapYear(object):
         else:
            res = '평년'
         return res
+
 
 class Quiz11NumberGolf(object):
     def __init__(self):

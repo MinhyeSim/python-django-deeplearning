@@ -4,6 +4,9 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+from hello.domains import members
+from quiz00 import Quiz00
+
 class Quiz20:
 
     def quiz20list(self) -> str:
@@ -77,12 +80,14 @@ class Quiz20:
         soup = BeautifulSoup(html_doc, 'lxml')#html.parser vs lxml
         ls1 = self.find_music(soup, 'title')#중복된 키의 값으로 찾지 않기 위해 ls1을 타이틀로 둔다.
         ls2 = self.find_music(soup, 'artist')
-        self.dict2(ls1, ls2)
-        dict = {}
-        for i,j in zip(ls1, ls2):
-            dict[i] = j
-        print(dict)
-        return dict
+        a = [i if i ==0 or i == 0 else i for i in range(1)]
+
+        d = {i:j for i,j in zip(ls1,ls2)}
+        l = [i + j for i, j in zip(ls1,ls2)]
+        l2 =list(zip(ls1,ls2))
+        d1 = dict(zip(ls1,ls2))
+        print(d1)
+        #self.dict1(ls1,ls2)
 
     @staticmethod
     def dict1(ls1,ls2) -> None:
@@ -97,6 +102,13 @@ class Quiz20:
         dict = {}
         for i,j in enumerate(ls1):
             dict[j] = ls2[i]
+        print(dict)
+
+    @staticmethod
+    def dict3(ls1, ls2) -> None:
+        dict = {}
+        for i, j in zip(ls1,ls2):
+            dict[j] = j
         print(dict)
 
     def print_music_list(self,soup):
@@ -120,7 +132,19 @@ class Quiz20:
         ls = [i for i in soup.find_all('p', {'class': cls_nm})]
         return [i.get_text() for i in ls]
 
-    def quiz25dictcom(self) -> str: return None
+    def quiz25dictcom(self) -> str:
+        #리스트로 5명, 0점~ 100점을 랜덤으로 뽑기
+        # .memberlist(5)[myRandom(0,23)]
+        q = Quiz00()
+        student = q.quiz06memberChoice()
+        students = [random.choice(members()) for i in range(5)]
+        print(f'{students}')
+        score = random.randint(0,100)
+        score2 = [score for i in range(5)]
+        print(score2)
+
+
+        return None
 
     def quiz26map(self) -> str: return None
 
@@ -134,6 +158,10 @@ class Quiz20:
         print('----한줄로 줄이기----')
         print(''.join(i.get_text() for i in [i for i in soup.find_all('div', {'class':'ellipsis rank03'})[1:3]]))
         return None
+
+
+
+
 
     def quiz28dataframe(self) -> None:
         dict = self.quiz24zip()
