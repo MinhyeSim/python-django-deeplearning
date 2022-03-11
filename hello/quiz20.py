@@ -167,8 +167,17 @@ class Quiz20:
     2   2   4   6
     '''
     def quiz29_pandas_df(self) -> object:
-        d2 = {"1":[1,3,5],"2":[2,4,6]}
-        df2 = pd.DataFrame.from_dict(d2,orient='index',columns=['a','b','c'])
-        print(df2)
-        
-        return None
+        d2 = {"1": [1, 3, 5], "2": [2, 4, 6]}
+        df2 = pd.DataFrame.from_dict(d2, orient='index', columns=['a', 'b', 'c'])
+        columns = ['a', 'b', 'c']
+
+        df3 = pd.DataFrame.from_dict(d2, orient='index', columns=columns)
+        print(df3)
+
+        a1 = []
+        a2 = []
+        a = [a1.append(i) if i % 2 == 1 else a2.append(i) for i in range(1, 7)]
+
+
+
+

@@ -46,7 +46,7 @@ if __name__ == '__main__':
         elif menu == '27': q2.quiz27melon()
         elif menu == '28': q2.quiz28dataframe()
         elif menu == '29': q2.quiz29_pandas_df()
-        elif menu == '30': q2.quiz30()
+        elif menu == '30': q2.quiz30_df_4_by_3()
         elif menu == '31': q2.quiz31()
         elif menu == '32': q2.quiz32()
         elif menu == '33': q2.quiz33()
