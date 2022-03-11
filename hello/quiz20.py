@@ -139,9 +139,8 @@ class Quiz20:
         student = q.quiz06memberChoice()
         students = [random.choice(members()) for i in range(5)]
         print(f'{students}')
-        score = random.randint(0,100)
-        score2 = [score for i in range(5)]
-        print(score2)
+        score = [random.randint(0,100) for i in range(5)]
+        print(score)
 
 
         return None
