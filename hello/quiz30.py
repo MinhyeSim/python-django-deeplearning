@@ -5,6 +5,9 @@ from icecream import ic
 import numpy as np
 import random
 
+from hello.domains import myRandom
+
+
 class Quiz30:
     '''
         데이터프레임 문제 Q02
@@ -63,16 +66,20 @@ class Quiz30:
     '''
     @staticmethod
     def id(chr_size) -> str: return ''.join([random.choice(string.ascii_letters) for i in range(chr_size)])
+
+    @staticmethod
+    def random() -> str: return None
+
     def quiz32(self) -> str :
         col1 = ['국어', '영어', '수학', '사회']
-        data1 = []
+        data1 = ([myRandom(10, 99)for i in range(4)]for i in range(10))
         idx = [self.id(chr_size=5) for i in range(10)]
-        df1 = pd.DataFrame(data1,index=idx, columns=col1)
+        df1 = pd.DataFrame(data1, index=idx, columns=col1)
         print(df1)
         print('--------------------------------')
-        data2 = {self.id(chr_size=5) for i in range(10)}
+        data2 = {"": [myRandom(10, 99)for i in range(4)]}
         col2 = ['국어', '영어', '수학', '사회']
-        idx2 = []
+        idx2 = [self.id(chr_size=5) for i in range(10)]
         df2 = pd.DataFrame.from_dict(data2, orient='index', columns= col2)
         #ids = [self.id(chr_size=5) for i in range(10)]
         print(df2)
