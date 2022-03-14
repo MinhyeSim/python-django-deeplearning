@@ -77,12 +77,15 @@ class Quiz30:
         df2 = pd.DataFrame.from_dict({}, orient='index', columns=col1)
         return None
     def quiz33(self) -> str:
-        #d1의 데이터를 한줄로 줄여서 출력하기
-        d1 = [{'a': 1, 'b': 2, 'c': 3, 'd': 4},
-             {'a': 100, 'b': 200, 'c': 300, 'd': 400}]
-        d = [dict(zip(['a', 'b', 'c', 'd'], np.random.randint(0, 100, 4)))for i in range(3)]
-        print(d)
-
+        #간소화하여 출력
+        df = self.createDf(keys=['a', 'b', 'c', 'd'],
+                           vals=np.random.randint(0, 100, 4),
+                           length=3)
+        ic(df)
+        return None
+    @staticmethod
+    def createDf(keys, vals, length):
+        return pd.DataFrame([dict(zip(keys,vals))for _ in range(length)])
         return None
 
     def quiz34(self) -> str: return None
