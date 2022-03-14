@@ -136,10 +136,13 @@ class Quiz30:
         '''
         sudj = ['자바', '파이썬', '자바스크립트', 'SQL']
         stud = [members()]
-        data = np.random.randint(0, 100, size=(24, 4))
-        df = pd.DataFrame(data, index=stud, columns=sudj)
-        ic(df)
+        score = np.random.randint(0, 100, size=(24, 4))
+        df1 = pd.DataFrame(score, index=stud, columns=sudj)
+        ic(df1)
+        df1.to_csv('./save/scores.csv', sep=',', na_rep='NaN')
         return None
+
+
 
 
     @staticmethod

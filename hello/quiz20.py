@@ -83,7 +83,6 @@ class Quiz20:
         ls1 = self.find_music(soup, 'title')#중복된 키의 값으로 찾지 않기 위해 ls1을 타이틀로 둔다.
         ls2 = self.find_music(soup, 'artist')
         a = [i if i ==0 or i == 0 else i for i in range(1)]
-
         d = {i: j for i, j in zip(ls1, ls2)}
         l = [i + j for i, j in zip(ls1, ls2)]
         l2 = list(zip(ls1, ls2))
@@ -174,9 +173,7 @@ class Quiz20:
     d = ''.join([])
     e = {i: j for i, j zip(l1, ls)}
     e2 = dict (zip(l1, l2))
-    f = list (zip(l1,l2)) 
-    
-    
+    f = list (zip(l1,l2))     
     '''
     def quiz29_pandas_df(self) -> object:
         columns = [chr(i) for i in range(97, 100)]
