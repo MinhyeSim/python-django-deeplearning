@@ -30,7 +30,7 @@ class Quiz30:
         a3 = [i for i in range(7, 10)]
         a4 = [i for i in range(10, 13)]
         #[1,4,7,10] 만들기
-        b = [[i for i in range(j)] for j in range(1,11,3)]
+        b = [[i for i in range(j)] for j in range(1, 11, 3)]
         print(b)
 
 
@@ -69,12 +69,14 @@ class Quiz30:
 
     def quiz32(self) -> str :
         col1 = ['국어', '영어', '수학', '사회']
-        data1 = []
-        idx = []
-        df1 = pd.DataFrame([], [], [])
+        data1 = np.random.randint(0, 100, (10, 4))
+        idx = [self.id(chr_size=5) for i in range(10)]
+        df1 = pd.DataFrame(data1, index=idx, columns=col1)
+        print(df1)
         print('--------------------------------')
-        data2 = {}
-        df2 = pd.DataFrame.from_dict({}, orient='index', columns=col1)
+        data2 = {i: j for i,j in zip(idx,data1)} #dict만들기 위해서 index랑 value 가져오기
+        df2 = pd.DataFrame.from_dict(data2, orient='index', columns=col1)
+        print(df2)
         return None
 
     @staticmethod
@@ -86,6 +88,15 @@ class Quiz30:
                            vals=np.random.randint(0, 100, 4),
                            length=3)
         ic(df)
+
+        sudj = ['자바', '파이썬', '자바스크립트', 'SQL']
+        stud = [members()]
+        score = np.random.randint(0, 100, size=(24, 4))
+        df1 = pd.DataFrame(score, index=stud, columns=sudj)
+        ic(df1)
+        df1.to_csv('./save/scores.csv', sep=',', na_rep='NaN')
+
+
         # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html
         # grade.csv
         model = Model()
