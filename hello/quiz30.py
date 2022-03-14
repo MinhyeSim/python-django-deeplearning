@@ -5,6 +5,7 @@ import numpy as np
 import random
 
 from hello.domains import myRandom, members
+from titanic.models import Model
 
 
 class Quiz30:
@@ -84,77 +85,13 @@ class Quiz30:
         df = self.createDf(keys=['a', 'b', 'c', 'd'],
                            vals=np.random.randint(0, 100, 4),
                            length=3)
+        ic(df)
+        # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html
+        # grade.csv
+        model = Model()
+        grade_df = model.new_model('grade.csv')
+        ic(grade_df)
 
-        #ic(df)
-        ic(df.iloc[0])#시리즈 구조로 떨어진다.
-        '''
-        ic| df.iloc[0]: a    43
-                        b    99
-                        c    53
-                        d    11
-                        Name: 0, dtype: int32
-        '''
-        ic(df.iloc[[0]])
-        '''
-        ic| df.iloc[[0]]:    a   b   c   d
-                          0  5  35  52  70
-        '''
-        ic(df.iloc[[0, 1]])
-        '''
-        ic| df.iloc[[0, 1]]:     a   b   c   d
-                              0  86  80  71  22
-                              1  86  80  71  22
-        '''
-        ic(df.iloc[:3])
-        ''' 
-        ic| df.iloc[:3]:     a   b   c   d
-                          0  88  44  48  22
-                          1  88  44  48  22
-                          2  88  44  48  22
-        '''
-        ic(df.iloc[[True, False, True]])
-        '''
-        ic| df.iloc[[True, False, True]]:     a   b   c   d
-                                          0  34  52  85  48
-                                          2  34  52  85  48
-
-        '''
-        ic(df.iloc[lambda x: x.index % 2 == 0])
-        '''
-        ic| df.iloc[lambda x: x.index % 2 == 0]:     a   b   c   d
-                                                 0  80  28  37  20
-                                                 2  80  28  37  20
-        '''
-        ic(df.iloc[0, 1])
-        '''
-        ic| df.iloc[0, 1]: 28
-        '''
-        ic(df.iloc[[0, 2], [1, 3]])
-        '''
-        ic| df.iloc[[0, 2], [1, 3]]:     b   d
-                                     0  28  20
-                                     2  28  20
-        '''
-        ic(df.iloc[1:3, 0:3])
-        '''
-        ic| df.iloc[1:3, 0:3]:     a   b   c
-                               1  80  28  37
-                               2  80  28  37
-        '''
-        ic(df.iloc[:, [True, False, True, False]])
-        '''
-        ic| df.iloc[:, [True, False, True, False]]:     a   c
-                                                    0  80  37
-                                                    1  80  37
-                                                    2  80  37
-        '''
-        ic(df.iloc[:, lambda df: [0,2]])
-        '''
-        ic| df.iloc[:, lambda df: [0,2]]:     a   c
-                                          0  80  37
-                                          1  80  37
-                                          2  80  37
-        '''
         return None
 
     def quiz34(self) -> str: return None
