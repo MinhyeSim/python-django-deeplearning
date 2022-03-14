@@ -45,7 +45,11 @@ class Quiz30:
     '''
 
     def quiz31(self) -> str:
-
+        col = [i for i in range(0, 3)]
+        data = np.random.randint(10, 99, (2, 3))
+        idx = ["0", "1"]
+        df = pd.DataFrame(data, index=idx, columns=col)
+        print(df)
         return None
     '''
         데이터프레임 문제 Q04.
@@ -86,15 +90,10 @@ class Quiz30:
         => 한줄로 출력 하기
     '''
 
-    @staticmethod
-    def createDf(keys, vals, length):
-        return pd.DataFrame([dict(zip(keys, vals)) for _ in range(length)])
-
     def quiz33(self) -> str:
-        df = self.createDf(keys=['a', 'b', 'c', 'd'],
-                           vals=np.random.randint(0, 100, 4),
-                           length=3)
-        ic(df)
+        dt = [dict(zip(['a', 'b', 'c', 'd'], np.random.randint(0, 100, size=4)))for i in range(3)]
+        print(pd.DataFrame(dt))
+
         '''
         sudj = ['자바', '파이썬', '자바스크립트', 'SQL']
         stud = [members()]
