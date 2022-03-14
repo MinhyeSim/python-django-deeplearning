@@ -4,7 +4,7 @@ from icecream import ic
 import numpy as np
 import random
 
-from hello.domains import myRandom
+from hello.domains import myRandom, members
 
 
 class Quiz30:
@@ -70,19 +70,78 @@ class Quiz30:
         col1 = ['국어', '영어', '수학', '사회']
         data1 = []
         idx = []
-
         df1 = pd.DataFrame([], [], [])
         print('--------------------------------')
         data2 = {}
         df2 = pd.DataFrame.from_dict({}, orient='index', columns=col1)
         return None
+
     def quiz33(self) -> str:
-        #간소화하여 출력
         df = self.createDf(keys=['a', 'b', 'c', 'd'],
                            vals=np.random.randint(0, 100, 4),
                            length=3)
+        #ic(df)
+        #ic(df.iloc[0])#시리즈 구조로 떨어진다.
+        '''
+        ic| df.iloc[0]: a    43
+                        b    99
+                        c    53
+                        d    11
+                        Name: 0, dtype: int32
+        '''
+        #ic(df.iloc[[0]])
+        '''
+        ic| df.iloc[[0]]:    a   b   c   d
+                          0  5  35  52  70
+        '''
+        #ic(df.iloc[[0, 1]])
+        '''
+        ic| df.iloc[[0, 1]]:     a   b   c   d
+                              0  86  80  71  22
+                              1  86  80  71  22
+        '''
+        #ic(df.iloc[:3])
+        ''' 
+        ic| df.iloc[:3]:     a   b   c   d
+                          0  88  44  48  22
+                          1  88  44  48  22
+                          2  88  44  48  22
+        '''
+        #ic(df.iloc[[True, False, True]])
+        '''
+        ic| df.iloc[[True, False, True]]:     a   b   c   d
+                                          0  34  52  85  48
+                                          2  34  52  85  48
+
+        '''
+        #ic(df.iloc[lambda x: x.index % 2 == 0])
+        '''
+        
+        '''
+        #ic(df.iloc[0, 1])
+        '''
+        
+        '''
+        #ic(df.iloc[[0, 2], [1, 3]])
+        '''
+        
+        '''
+        #ic(df.iloc[1:3, 0:3])
+        '''
+        
+        '''
+        #ic(df.iloc)
+        '''
+        
+        '''
+        sudj = ['자바', '파이썬', '자바스크립트', 'SQL']
+        stud = [members()]
+        data = np.random.randint(0, 100, size=(24, 4))
+        df = pd.DataFrame(data, index=stud, columns=sudj)
         ic(df)
         return None
+
+
     @staticmethod
     def createDf(keys, vals, length):
         return pd.DataFrame([dict(zip(keys,vals))for _ in range(length)])
