@@ -61,13 +61,14 @@ class Quiz30:
                         PZOTP  94   78   79   96
                         GOJKU  62   17   75   49
     '''
-
+    @staticmethod
+    def id(chr_size) -> str: return ''.join([random.choice(string.ascii_letters) for i in range(chr_size=5)])
     def quiz32(self) -> str:
         d = {}
-        columns = ['국어','영어', '수학', '사회']
-        df = pd.DataFrame.from_dict(d, orient='index', columns= columns)
-        id = ''.join([random.choice(string.ascii_letters) for i in range(5)])
-        ids = [''.join([random.choice(string.ascii_letters) for i in range(5)]) for i in range(10)]
+        columns = ['국어', '영어', '수학', '사회']
+        df1 = pd.DataFrame([], [], [])
+        df2 = pd.DataFrame.from_dict(d, orient='index', columns= columns)
+        ids = [self.id(chr_size=5) for i in range(10)]
         print(ids)
         return None
     def quiz33(self) -> str: return None
