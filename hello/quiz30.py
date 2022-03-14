@@ -76,10 +76,15 @@ class Quiz30:
         df2 = pd.DataFrame.from_dict({}, orient='index', columns=col1)
         return None
 
+    @staticmethod
+    def createDf(keys, vals, length):
+        return pd.DataFrame([dict(zip(keys, vals)) for _ in range(length)])
+
     def quiz33(self) -> str:
         df = self.createDf(keys=['a', 'b', 'c', 'd'],
                            vals=np.random.randint(0, 100, 4),
                            length=3)
+
         #ic(df)
         #ic(df.iloc[0])#시리즈 구조로 떨어진다.
         '''
@@ -114,40 +119,42 @@ class Quiz30:
                                           2  34  52  85  48
 
         '''
-        #ic(df.iloc[lambda x: x.index % 2 == 0])
+        ic(df.iloc[lambda x: x.index % 2 == 0])
         '''
-        
+        ic| df.iloc[lambda x: x.index % 2 == 0]:     a   b   c   d
+                                                 0  80  28  37  20
+                                                 2  80  28  37  20
         '''
-        #ic(df.iloc[0, 1])
+        ic(df.iloc[0, 1])
         '''
-        
+        ic| df.iloc[0, 1]: 28
         '''
-        #ic(df.iloc[[0, 2], [1, 3]])
+        ic(df.iloc[[0, 2], [1, 3]])
         '''
-        
+        ic| df.iloc[[0, 2], [1, 3]]:     b   d
+                                     0  28  20
+                                     2  28  20
         '''
-        #ic(df.iloc[1:3, 0:3])
+        ic(df.iloc[1:3, 0:3])
         '''
-        
+        ic| df.iloc[1:3, 0:3]:     a   b   c
+                               1  80  28  37
+                               2  80  28  37
         '''
-        #ic(df.iloc)
+        ic(df.iloc[:, [True, False, True, False]])
         '''
-        
+        ic| df.iloc[:, [True, False, True, False]]:     a   c
+                                                    0  80  37
+                                                    1  80  37
+                                                    2  80  37
         '''
-        sudj = ['자바', '파이썬', '자바스크립트', 'SQL']
-        stud = [members()]
-        score = np.random.randint(0, 100, size=(24, 4))
-        df1 = pd.DataFrame(score, index=stud, columns=sudj)
-        ic(df1)
-        df1.to_csv('./save/scores.csv', sep=',', na_rep='NaN')
-        return None
-
-
-
-
-    @staticmethod
-    def createDf(keys, vals, length):
-        return pd.DataFrame([dict(zip(keys,vals))for _ in range(length)])
+        ic(df.iloc[:, lambda df: [0,2]])
+        '''
+        ic| df.iloc[:, lambda df: [0,2]]:     a   c
+                                          0  80  37
+                                          1  80  37
+                                          2  80  37
+        '''
         return None
 
     def quiz34(self) -> str: return None
