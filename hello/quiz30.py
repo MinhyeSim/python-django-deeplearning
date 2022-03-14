@@ -1,5 +1,4 @@
 import string
-
 import pandas as pd
 from icecream import ic
 import numpy as np
@@ -67,24 +66,24 @@ class Quiz30:
     @staticmethod
     def id(chr_size) -> str: return ''.join([random.choice(string.ascii_letters) for i in range(chr_size)])
 
-    @staticmethod
-    def random() -> str: return None
-
     def quiz32(self) -> str :
         col1 = ['국어', '영어', '수학', '사회']
-        data1 = ([myRandom(10, 99)for i in range(4)]for i in range(10))
-        idx = [self.id(chr_size=5) for i in range(10)]
-        df1 = pd.DataFrame(data1, index=idx, columns=col1)
-        print(df1)
+        data1 = []
+        idx = []
+
+        df1 = pd.DataFrame([], [], [])
         print('--------------------------------')
-        data2 = {"": [myRandom(10, 99)for i in range(4)]}
-        col2 = ['국어', '영어', '수학', '사회']
-        idx2 = [self.id(chr_size=5) for i in range(10)]
-        df2 = pd.DataFrame.from_dict(data2, orient='index', columns= col2)
-        #ids = [self.id(chr_size=5) for i in range(10)]
-        print(df2)
+        data2 = {}
+        df2 = pd.DataFrame.from_dict({}, orient='index', columns=col1)
         return None
-    def quiz33(self) -> str: return None
+    def quiz33(self) -> str:
+        #d1의 데이터를 한줄로 줄여서 출력하기
+        d1 = [{'a': 1, 'b': 2, 'c': 3, 'd': 4},
+             {'a': 100, 'b': 200, 'c': 300, 'd': 400}]
+        d = [dict(zip(['a', 'b', 'c', 'd'], np.random.randint(0, 100, 4)))for i in range(3)]
+        print(d)
+
+        return None
 
     def quiz34(self) -> str: return None
 
