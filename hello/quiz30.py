@@ -62,14 +62,20 @@ class Quiz30:
                         GOJKU  62   17   75   49
     '''
     @staticmethod
-    def id(chr_size) -> str: return ''.join([random.choice(string.ascii_letters) for i in range(chr_size=5)])
-    def quiz32(self) -> str:
-        d = {}
-        columns = ['국어', '영어', '수학', '사회']
-        df1 = pd.DataFrame([], [], [])
-        df2 = pd.DataFrame.from_dict(d, orient='index', columns= columns)
-        ids = [self.id(chr_size=5) for i in range(10)]
-        print(ids)
+    def id(chr_size) -> str: return ''.join([random.choice(string.ascii_letters) for i in range(chr_size)])
+    def quiz32(self) -> str :
+        col1 = ['국어', '영어', '수학', '사회']
+        data1 = []
+        idx = [self.id(chr_size=5) for i in range(10)]
+        df1 = pd.DataFrame(data1,index=idx, columns=col1)
+        print(df1)
+        print('--------------------------------')
+        data2 = {self.id(chr_size=5) for i in range(10)}
+        col2 = ['국어', '영어', '수학', '사회']
+        idx2 = []
+        df2 = pd.DataFrame.from_dict(data2, orient='index', columns= col2)
+        #ids = [self.id(chr_size=5) for i in range(10)]
+        print(df2)
         return None
     def quiz33(self) -> str: return None
 
