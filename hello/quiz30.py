@@ -74,10 +74,17 @@ class Quiz30:
         df1 = pd.DataFrame(data1, index=idx, columns=col1)
         print(df1)
         print('--------------------------------')
-        data2 = {i: j for i,j in zip(idx,data1)} #dict만들기 위해서 index랑 value 가져오기
+        data2 = {i: j for i, j in zip(idx, data1)}
         df2 = pd.DataFrame.from_dict(data2, orient='index', columns=col1)
         print(df2)
         return None
+
+    '''
+    d = [{'a':1, 'b':2, 'c':3, 'd':4},
+        {'a':100, 'b':200, 'c':300, 'd':400},
+        {'a':1000, 'b':2000, 'c':3000, 'd':4000}]
+        => 한줄로 출력 하기
+    '''
 
     @staticmethod
     def createDf(keys, vals, length):
@@ -88,7 +95,7 @@ class Quiz30:
                            vals=np.random.randint(0, 100, 4),
                            length=3)
         ic(df)
-
+        '''
         sudj = ['자바', '파이썬', '자바스크립트', 'SQL']
         stud = [members()]
         score = np.random.randint(0, 100, size=(24, 4))
@@ -102,7 +109,7 @@ class Quiz30:
         model = Model()
         grade_df = model.new_model('grade.csv')
         ic(grade_df)
-
+        '''
         return None
 
     def quiz34(self) -> str: return None
