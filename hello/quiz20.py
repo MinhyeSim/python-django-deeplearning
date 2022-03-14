@@ -1,5 +1,7 @@
 import random
 import urllib.request
+
+import pandas
 import pandas as pd
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -82,10 +84,10 @@ class Quiz20:
         ls2 = self.find_music(soup, 'artist')
         a = [i if i ==0 or i == 0 else i for i in range(1)]
 
-        d = {i:j for i,j in zip(ls1,ls2)}
-        l = [i + j for i, j in zip(ls1,ls2)]
-        l2 =list(zip(ls1,ls2))
-        d1 = dict(zip(ls1,ls2))
+        d = {i: j for i, j in zip(ls1, ls2)}
+        l = [i + j for i, j in zip(ls1, ls2)]
+        l2 = list(zip(ls1, ls2))
+        d1 = dict(zip(ls1, ls2))
         print(d1)
         #self.dict1(ls1,ls2)
 
@@ -98,9 +100,9 @@ class Quiz20:
         print(dict)
 
     @staticmethod
-    def dict2(ls1,ls2) -> None: #dict1번을 줄인 방법
+    def dict2(ls1, ls2) -> None: #dict1번을 줄인 방법
         dict = {}
-        for i,j in enumerate(ls1):
+        for i, j in enumerate(ls1):
             dict[j] = ls2[i]
         print(dict)
 
@@ -112,7 +114,7 @@ class Quiz20:
         print(dict)
 
     def print_music_list(self, soup):
-        artists = soup.find_all('p',{'class':'artist'})
+        artists = soup.find_all('p', {'class': 'artist'})
         #print(type(artists)) #<class 'bs4.element.ResultSet'>
         artists = [i.get_text() for i in artists]
         #print(type(artists))
@@ -121,7 +123,7 @@ class Quiz20:
         titles = [i.get_text() for i in titles]
         print(''.join(i for i in titles))
 
-    def find_rank(self,soup):
+    def find_rank(self, soup):
         for i, j in enumerate(['artist', 'title']):
             for i, j in enumerate(self.find_music(soup, j)):
                 print(f'{i}위 : {j}')
@@ -165,18 +167,32 @@ class Quiz20:
         a   b   c
     1   1   3   5
     2   2   4   6
+    
+    a = [i if i == 0 or i == 0 else i for i in range()]
+    b = [i if i == 0 or i == 0 else i for i in [] ]
+    c = [(i,j) for i, j in enumerate([])]
+    d = ''.join([])
+    e = {i: j for i, j zip(l1, ls)}
+    e2 = dict (zip(l1, l2))
+    f = list (zip(l1,l2)) 
+    
+    
     '''
     def quiz29_pandas_df(self) -> object:
-
         columns = [chr(i) for i in range(97, 100)]
         a1 = []
         a2 = []
+        [a1.append(i) if i % 2 == 1 else a2.append(i) for i in range(1, 7)]
         a3 = ["1", "2"]
         a4 = [a1, a2]
-        a = [a1.append(i) if i % 2 == 1 else a2.append(i) for i in range(1, 7)]
-        b = {i: j for i, j in zip(a3, a4)}
-        df3 = pd.DataFrame.from_dict(b, orient='index', columns=columns)
-        print(df3)
+        c = {i: j for i, j in zip(a3, a4)}
+        df = pd.DataFrame.from_dict(c, orient='index', columns=columns)
+        print(df)
+
+
+
+
+
 
 
 

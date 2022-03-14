@@ -1,6 +1,10 @@
+import string
+
 import pandas as pd
 from icecream import ic
 import numpy as np
+import random
+
 class Quiz30:
     '''
         데이터프레임 문제 Q02
@@ -11,13 +15,23 @@ class Quiz30:
                 4   10  11  12
     '''
     def quiz30_df_4_by_3(self) -> str:
-        df = pd.DataFrame([[1,2,3],
-                          [4,5,6],
-                          [7,8,9],
-                          [10,11,12]], index=range(1,5), columns=['A','B','C'])
-        #위 식을 리스트결합 형태로 분해해서 조립하시오
+        '''val = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+        ind = range(1, 5) #range는 자체 타입이기 때문에 [],()과 동일한 타입과 함께 사용할 수 없다.
+        col = ['A', 'B', 'C']
+        df = pd.DataFrame(val, index=ind, columns=col)
         ic(df)
-        return None
+        return None'''
+
+        a1 = [i for i in range(1, 4)]
+        a2 = [i for i in range(4, 7)]
+        a3 = [i for i in range(7, 10)]
+        a4 = [i for i in range(10, 13)]
+        #[1,4,7,10] 만들기
+        b = [[i for i in range(j)] for j in range(1,11,3)]
+        print(b)
+
+
+
 
     '''
         데이터프레임 문제 Q03.
@@ -49,6 +63,11 @@ class Quiz30:
     '''
 
     def quiz32(self) -> str: return None
+        d = {}
+        columns = ['국어','영어', '수학', '사회']
+        df = pd.DataFrame.from_dict(d, orient='index', columns= columns)
+        id = ''.join([random.choice(string.ascii_letters) for i in range(5)])
+
 
     def quiz33(self) -> str: return None
 
@@ -63,4 +82,3 @@ class Quiz30:
     def quiz38(self) -> str: return None
 
     def quiz39(self) -> str: return None
-
