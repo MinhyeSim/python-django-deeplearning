@@ -62,13 +62,14 @@ class Quiz30:
                         GOJKU  62   17   75   49
     '''
 
-    def quiz32(self) -> str: return None
+    def quiz32(self) -> str:
         d = {}
         columns = ['국어','영어', '수학', '사회']
         df = pd.DataFrame.from_dict(d, orient='index', columns= columns)
         id = ''.join([random.choice(string.ascii_letters) for i in range(5)])
-
-
+        ids = [''.join([random.choice(string.ascii_letters) for i in range(5)]) for i in range(10)]
+        print(ids)
+        return None
     def quiz33(self) -> str: return None
 
     def quiz34(self) -> str: return None
