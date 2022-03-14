@@ -86,7 +86,7 @@ class Quiz30:
                            length=3)
 
         #ic(df)
-        #ic(df.iloc[0])#시리즈 구조로 떨어진다.
+        ic(df.iloc[0])#시리즈 구조로 떨어진다.
         '''
         ic| df.iloc[0]: a    43
                         b    99
@@ -94,25 +94,25 @@ class Quiz30:
                         d    11
                         Name: 0, dtype: int32
         '''
-        #ic(df.iloc[[0]])
+        ic(df.iloc[[0]])
         '''
         ic| df.iloc[[0]]:    a   b   c   d
                           0  5  35  52  70
         '''
-        #ic(df.iloc[[0, 1]])
+        ic(df.iloc[[0, 1]])
         '''
         ic| df.iloc[[0, 1]]:     a   b   c   d
                               0  86  80  71  22
                               1  86  80  71  22
         '''
-        #ic(df.iloc[:3])
+        ic(df.iloc[:3])
         ''' 
         ic| df.iloc[:3]:     a   b   c   d
                           0  88  44  48  22
                           1  88  44  48  22
                           2  88  44  48  22
         '''
-        #ic(df.iloc[[True, False, True]])
+        ic(df.iloc[[True, False, True]])
         '''
         ic| df.iloc[[True, False, True]]:     a   b   c   d
                                           0  34  52  85  48
