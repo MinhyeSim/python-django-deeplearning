@@ -111,6 +111,9 @@ class Quiz30:
         print('Q2. 조현국의 점수만 출력하시오.')
         cho_scores = grade_df.loc['조현국']
         ic(cho_scores)
+        print('Q3. 조현국의 과목별 점수를 출력하시오')
+        cho_subjects_scores = grade_df.loc[['조현국']]
+        ic(cho_subjects_scores)
         return None
 
     def quiz34(self) -> str: return None
