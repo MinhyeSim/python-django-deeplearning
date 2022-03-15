@@ -17,6 +17,13 @@ class TitanicModel(object):
 
     def preprocess(self):
         self.create_label()
+        self.create_train()
+        self.drop_feature()
+        self.pclass_ordinal()
+        self.name_garbage()
+        self.sex_nomial()
+        self.age_ratio()
+
 
     def create_label(self)->object:
         pass
@@ -30,29 +37,29 @@ class TitanicModel(object):
     def pclass_ordinal(self)->object:
         pass
 
-    def name_nominal(self)->object: #garbage
+    def name_garbage(self)->object:
         pass
 
     def sex_nominal(self)->object:
         pass
 
-    def age_ordinal(self)->object:
+    def age_ratio(self)->object:
         pass
 
-    def sibsp_nominal(self)->object:
+    def sibsp_garbage(self)->object:
         pass
 
-    def parch_nominal(self)->object:
+    def parch_garbage(self)->object:
         pass
 
-    def ticket_nominal(self)->object: #garbage
+    def ticket_garbage(self)->object:
         pass
 
-    def fare_ratio(self)->object: #garbage
+    def fare_ratio(self)->object:
         pass
 
-    def cabin_nominal(self)->object:
+    def cabin_garbage(self)->object:
         pass
 
-    def embarked_nominal(self)->object: #garbage
+    def embarked_nominal(self)->object:
         pass
