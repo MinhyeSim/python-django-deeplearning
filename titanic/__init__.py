@@ -1,5 +1,5 @@
 # https://github.com/datasciencedojo/datasets/blob/master/titanic.csv
-from titanic.model import TitanicModel
+from titanic.models import TitanicModel
 from titanic.templates import TitanicTemplates
 from titanic.views import TitanicView
 if __name__ == '__main__':
