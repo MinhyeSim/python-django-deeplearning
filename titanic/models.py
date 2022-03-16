@@ -23,7 +23,7 @@ class TitanicModel(object):
         df = self.fare_ratio(df)
         df = self.age_ratio(df)
         df = self.sex_nominal(df)
-        df = self.embarked_nominal(df)#=>정제되어있는 완제품.
+        df = self.embarked_nominal(df)
         return df
 
     @staticmethod
