@@ -16,12 +16,7 @@ class TitanicModel(object):
         ic(self.train)
 
     def preprocess(self):
-        #코딩 순서 1. 결합도를 낮춰야 한다.
-        df = self.parch_garbage(df)
-        df = self.name_garbage(df)
-        df = self.sibsp_garbage(df)
-        df = self.ticket_garbage(df)
-        df = self.cabin_garbage(df)
+        df = self.train #train 전체의 df를 가져온 후 정제할 것을 목표로 둔다
         df = self.create_label(df)
         df = self.create_train(df)
         df = self.drop_feature(df)
@@ -30,55 +25,60 @@ class TitanicModel(object):
         df = self.age_ratio(df)
         df = self.sex_nominal(df)
         df = self.embarked_nominal(df)#=>정제되어있는 완제품.
+        return df
 
     @staticmethod
-    def create_label(create_label) -> object:
-        return create_label
+    def create_label(df) -> object:
+        return df
 
     @staticmethod
-    def create_train(create_train) -> object:
-        return create_train
+    def create_train(df) -> object:
+        return df
+
+    def drop_feature(self, df) -> object:
+        df = self.parch_garbage(df)
+        df = self.name_garbage(df)
+        df = self.sibsp_garbage(df)
+        df = self.ticket_garbage(df)
+        df = self.cabin_garbage(df)
+        return df
 
     @staticmethod
-    def drop_feature(drop_feature) -> object:
-        return drop_feature
+    def pclass_ordinal(df) -> object:
+        return df
 
     @staticmethod
-    def pclass_ordinal(pclass_ordinal) -> object:
-        return pclass_ordinal
+    def name_garbage(df) -> object:
+        return df
 
     @staticmethod
-    def name_garbage(name_garbage) -> object:
-        return name_garbage
+    def sex_nominal(df) -> object:
+        return df
 
     @staticmethod
-    def sex_nominal(sex_nominal) -> object:
-        return sex_nominal
+    def age_ratio(df) -> object:
+        return df
 
     @staticmethod
-    def age_ratio(age_ratio) -> object:
-        return age_ratio
+    def sibsp_garbage(df) -> object:
+        return df
 
     @staticmethod
-    def sibsp_garbage(sibsp_garbage) -> object:
-        return sibsp_garbage
+    def parch_garbage(df) -> object:
+        return df
 
     @staticmethod
-    def parch_garbage(parch_garbage) -> object:
-        return parch_garbage
+    def ticket_garbage(df) -> object:
+        return df
 
     @staticmethod
-    def ticket_garbage(ticket_garbage) -> object:
-        return ticket_garbage
+    def fare_ratio(df) -> object:
+        return df
 
     @staticmethod
-    def fare_ratio(fare_ratio) -> object:
-        return fare_ratio
+    def cabin_garbage(df) -> object:
+        return df
 
     @staticmethod
-    def cabin_garbage(cabin_garbage) -> object:
-        return cabin_garbage
-
-    @staticmethod
-    def embarked_nominal(embarked_nominal) -> object:
-        return embarked_nominal
+    def embarked_nominal(df) -> object:
+        return df
