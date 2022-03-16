@@ -71,7 +71,7 @@ class Quiz30:
     @staticmethod
     def id(chr_size) -> str: return ''.join([random.choice(string.ascii_letters) for i in range(chr_size)])
 
-    def quiz32(self) -> str :
+    def quiz32(self) -> str:
         col1 = ['국어', '영어', '수학', '사회']
         data1 = np.random.randint(0, 100, (10, 4))
         idx = [self.id(chr_size=5) for i in range(10)]
