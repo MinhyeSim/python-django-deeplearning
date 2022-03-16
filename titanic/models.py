@@ -36,6 +36,7 @@ class TitanicModel(object):
         return df
 
     def drop_feature(self, df) -> object:
+        a = [i for i in []]
         df = self.parch_garbage(df)
         df = self.name_garbage(df)
         df = self.sibsp_garbage(df)
