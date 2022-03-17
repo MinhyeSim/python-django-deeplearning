@@ -24,14 +24,9 @@ class TitanicModel(object):
         df = self.age_ratio(df)
         df = self.sex_nominal(df)
         df = self.embarked_nominal(df)
-        return df
 
-    @staticmethod
-    def create_label(df) -> object:
-        return df
 
-    @staticmethod
-    def create_train(df) -> object:
+
         return df
 
     def drop_feature(self, df) -> object:
@@ -41,6 +36,14 @@ class TitanicModel(object):
         df = self.sibsp_garbage(df)
         df = self.ticket_garbage(df)
         df = self.cabin_garbage(df)
+        return df
+
+    @staticmethod #받을 정보가 없으므로 staticmethod를 사용한다
+    def create_label(df) -> object:
+        return df
+
+    @staticmethod
+    def create_train(df) -> object:
         return df
 
     @staticmethod

@@ -11,8 +11,12 @@ if __name__ == '__main__':
         if menu == '1':
             print(' #### 1.전처리 #### ')
             models = TitanicModel('train.csv', 'test.csv')
+
+
             break
+
         elif menu == '2':
             print(' #### 2.템플릿 ####')
             templates = TitanicTemplates(train_fname='train.csv')
+            templates.visualize()
             break
