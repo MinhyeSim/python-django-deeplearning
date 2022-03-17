@@ -10,9 +10,7 @@ if __name__ == '__main__':
         menu = input('1.전처리 2.템플릿')
         if menu == '1':
             print(' #### 1.전처리 #### ')
-            models = TitanicModel('train.csv', 'test.csv')
-
-
+            model = TitanicModel('train.csv', 'test.csv')
             break
 
         elif menu == '2':

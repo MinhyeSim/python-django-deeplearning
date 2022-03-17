@@ -1,10 +1,9 @@
 from matplotlib import font_manager, rc
 
-
 from context.domains import Dataset
 from context.models import Model
 from titanic import TitanicModel
-import icecream as ic
+from icecream import ic
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -23,36 +22,63 @@ survived, pclass, sex, embarked의 4개만 그리겠습니다.
 
 '''
 class TitanicTemplates(object):
+    dataset = Dataset()
+    model = Model()
+
     def __init__(self, train_fname):
-        self.model = Model()
-        self.dataset = Dataset()
-        self.train = self.model.new_model(train_fname)
+        self.entity = self.model.new_model(train_fname)
+        this = self.entity
+        ic(f'트레인의 타입: {type(this)}')
+        ic(f'트레인의 컬럼: {this.columns}')
+        ic(f'트레인의 상위5행: {this.head()}')
+        ic(f'트레인의 하위5행: {this.tail()}')
+
 
     def visualize(self) -> None:
-        this = self.train
-        self.survived(this)
-        #self.pclass(this)
-        #self.sex(this)
-        #self.embarked(this)
+        this = self.entity
+        self.draw_survived(this)
+        self.draw_pclass(this)
+        self.draw_sex(this)
+        self.draw_embarked(this)
 
     @staticmethod
-    def survived(this) -> None:
+    def draw_survived(this) -> None:
         f, ax = plt.subplots(1, 2, figsize=(18, 8))  # nrows=2, ncols=1, figsize=18inch, 8inch
         this['Survived'].value_counts().plot.pie(explode=[0,0.1], autopct='%1.1f%%', ax=ax[0], shadow=True)
         ax[0].set_title('0.사망자 vs 1.생존자')
         ax[0].set_ylabel('')
         ax[1].set_title('0.사망자 vs 1.생존자')
         sns.countplot('Survived', data=this, ax=ax[1])
-        plt.show()
+        #plt.show()
+        model = Model()
+        plt.savefig(f'{model.get_sname()}draw_survived.png')
 
     @staticmethod
-    def pclass(this) -> None:
-        plt.show()
+    def draw_pclass(this) -> None:
+        this['생존결과'] = this['Survived'] \
+            .replace(0, '사망자').replace(1, '생존자')
+        this['Pclass'] = this['Pclass'].replace(1, '1등석').replace(2, '2등석').replace(3, '3등석')
+        sns.countplot(data=this)
+        model = Model()
+        plt.savefig(f'{model.get_sname()}draw_pclass.png')
 
     @staticmethod
-    def sex(this) -> None:
-        plt.show()
+    def draw_sex(this) -> None:
+        f, ax = plt.subplots(1, 2, figsize=(18, 8))
+        this['Survived'][this['Sex'] == 'male'].value_counts().plot.pie(explode=[0, 0.1], autopct='%1.1f%%', ax=ax[0], shadow=True)
+        this['Survived'][this['Sex'] == 'female'].value_counts().plot.pie(explode=[0, 0.1], autopct='%1.1f%%', ax=ax[1], shadow=True)
+        ax[0].set_title('남성의 생존비율 [0.사망자 vs 1.생존자]')
+        ax[1].set_title('여성의 생존비율 [0.사망자 vs 1.생존자]')
+        model = Model()
+        plt.savefig(f'{model.get_sname()}draw_sex.png')
 
     @staticmethod
-    def embarked(this) -> None:
-        plt.show()
+    def draw_embarked(this) -> None:
+        this['생존결과'] = this['Survived'] \
+            .replace(0, '사망자').replace(1, '생존자')
+        this['승선항구'] = this['Embarked'] \
+            .replace("C", '쉘버그').replace("S", '사우스햄톤').replace("Q", '퀸즈타운')
+        sns.countplot(data=this)
+        model = Model()
+        plt.savefig(f'{model.get_sname()}draw_embarked.png')
+
