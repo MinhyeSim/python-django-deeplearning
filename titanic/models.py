@@ -5,27 +5,19 @@ from context.models import Model
 
 class TitanicModel(object):
     model = Model()
-    dataset = Dataset()#필요한 정보를 넣고 꺼내기 위해
-    def __init__(self, train_fname, test_fname):
+    dataset = Dataset()
+
+    def preprocess(self, train_fname, test_fname):
         this = self.dataset
         that = self.model
-        #데이터셋은 Train, Test, Validation 3종류로 나뉜다.
+        # 데이터셋은 Train, Test, Validation 3종류로 나뉜다.
         this.train = that.new_dframe(train_fname)
         this.test = that.new_dframe(test_fname)
         this.id = this.test['PassengerId']
         this.label = this.train['Survived']
-        #Entity에서 Object로 전환
-        this = self.drop_feature(this)
         this.train = this.train.drop('Survived', axis=1)
-
-        #ic(f'트레인 컬럼 {self.train.columns}')
-        #ic(f'트레인 헤드 {self.train.head()}')
-        #id 추출
-
-
-    def preprocess(self):
-        this = self.create_this(self.dataset)
-        self.print_this(this)
+        # Entity에서 Object로 전환
+        this = self.drop_feature(this)
         '''
         this = self.create_label(this)
         this = self.create_train(this)
@@ -36,6 +28,7 @@ class TitanicModel(object):
         this = self.sex_nominal(this)
         this = self.embarked_nominal(this)
         '''
+        self.print_this(this)
         return this
 
     @staticmethod
@@ -56,19 +49,24 @@ class TitanicModel(object):
     @staticmethod
     def drop_feature(this, *feature) -> object:
         #문제의도 : 콘솔창에 출력시 해당 5개의 feature가 삭제되면 됨
+        #a = [i for i in []]
+        columns = ['Name',  'SibSp', 'Parch', 'Ticket', 'Cabin']
+        [this.train.drop(columns, inplace=True, axis=1) for i in [this.train]]
+        [this.test.drop(columns, inplace=True, axis=1) for i in [this.test]]
 
-        this.train = this.train.drop('Parch', axis=1)
+        '''
         this.train = this.train.drop('Name', axis=1)
         this.train = this.train.drop('SibSp', axis=1)
+        this.train = this.train.drop('Parch', axis=1)
         this.train = this.train.drop('Ticket', axis=1)
         this.train = this.train.drop('Cabin', axis=1)
 
-        this.test = this.test.drop('Parch', axis=1)
         this.test = this.test.drop('Name', axis=1)
         this.test = this.test.drop('SibSp', axis=1)
+        this.test = this.test.drop('Parch', axis=1)
         this.test = this.test.drop('Ticket', axis=1)
         this.test = this.test.drop('Cabin', axis=1)
-        a = [i for i in []]
+        '''
 
 
         return this
