@@ -21,6 +21,10 @@ class Model:
         #pd.read_csv('경로/파일명.csv',index_col = '인덱스로 지정할 column명')Index 지정
         return pd.read_csv(f'{this.dname}{fname}', index_col=0)
 
+    def new_dframe(self,fnme) -> object:
+        this = self.ds
+
+
     def save_model(self, fname, dframe):
         this = self.ds
         f'''
