@@ -7,14 +7,21 @@ class TitanicModel(object):
     model = Model()
     dataset = Dataset()#필요한 정보를 넣고 꺼내기 위해
     def __init__(self, train_fname, test_fname):
+        this = self.dataset
+        that = self.model
+        #데이터셋은 Train, Test, Validation 3종류로 나뉜다.
+        this.train = that.new_dframe(train_fname)
+        this.test = that.new_dframe(test_fname)
+        this.id = this.test['PassengerId']
+        this.label = this.train['Survived']
+        #Entity에서 Object로 전환
+        this = self.drop_feature(this)
+        this.train = this.train.drop('Survived', axis=1)
 
-        self.train = self.model.new_model(train_fname)
-        self.test = self.model.new_model(test_fname)
-        self.id = self.test['PassengerId']
-        self.label = self.train['Survived']
         #ic(f'트레인 컬럼 {self.train.columns}')
         #ic(f'트레인 헤드 {self.train.head()}')
         #id 추출
+
 
     def preprocess(self):
         this = self.create_this(self.dataset)
@@ -46,24 +53,24 @@ class TitanicModel(object):
         ic(f'10.id의 상위 10개 : {this.id[:10]}\n')
         print('*' * 100)
 
-    def create_this(self, dataset) -> object:
-        this = dataset #this 는 모델이다.
-        that = this.model
-        this.train = self.train #this.train,test,id를 dataset으로 합쳤따.
-        this.test = self.test#train, 는 series id는 df
-        this.id = self.id
-        return this
-
     @staticmethod
     def drop_feature(this, *feature) -> object:
+        #문제의도 : 콘솔창에 출력시 해당 5개의 feature가 삭제되면 됨
+
+        this.train = this.train.drop('Parch', axis=1)
+        this.train = this.train.drop('Name', axis=1)
+        this.train = this.train.drop('SibSp', axis=1)
+        this.train = this.train.drop('Ticket', axis=1)
+        this.train = this.train.drop('Cabin', axis=1)
+
+        this.test = this.test.drop('Parch', axis=1)
+        this.test = this.test.drop('Name', axis=1)
+        this.test = this.test.drop('SibSp', axis=1)
+        this.test = this.test.drop('Ticket', axis=1)
+        this.test = this.test.drop('Cabin', axis=1)
         a = [i for i in []]
-        '''
-        self.parch_garbage(df)
-        self.name_garbage(df)
-        self.sibsp_garbage(df)
-        self.ticket_garbage(df)
-        self.cabin_garbage(df)
-        '''
+
+
         return this
 
     @staticmethod
