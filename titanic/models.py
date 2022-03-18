@@ -18,20 +18,26 @@ class TitanicModel(object):
         this.test = that.new_dframe(test_fname)
         this.label = this.train['Survived']
         this.id = this.test['PassengerId']
-        this.train = this.train.drop('Survived', axis=1)
-        #Entity에서 Object로 전환
+        this.train = this.train.drop('Survived', axis=1) #Entity에서 Object로 전환
         this = self.drop_feature(this, 'SibSp', 'Parch', 'Ticket', 'Cabin')
         this = self.extract_title_from_name(this)
         title_mapping = self.remove_duplicate(this)
         this = self.title_nominal(this, title_mapping)
         this = self.drop_feature(this, 'Name')
         this = self.sex_nominal(this)
+        this = self.drop_feature(this, 'Sex')
+        this = self.embarked_nominal(this)
+
+
+
         self.df_info(this)
         return this
 
     @staticmethod
     def df_info(this):
         [ic(f'{i.info()}') for i in [this.train, this.test]]
+        ic(this.train.head(3))
+        ic(this.test.head(3))
 
     @staticmethod
     def null_check(this):
@@ -44,7 +50,6 @@ class TitanicModel(object):
 
     @staticmethod
     def drop_feature(this, *feature) -> object:
-        ic(type(feature))
         [i.drop(j, axis=1, inplace=True) for j in feature for i in [this.train, this.test]]
         return this
 
@@ -66,19 +71,16 @@ class TitanicModel(object):
         'Lady', 'Mr', 'Dona', 'Mlle', 'Capt', 'Master', 'Jonkheer', 'Mrs', 'Countess',
         'Dr', 'Ms', 'Miss', 'Rev', 'Col', 'Sir', 'Major', 'Don', 'Mme'
         '''
-        combine = [this.train, this.test]
-        for these in combine:
+        for these in [this.train, this.test]:
             these['Title'] = these.Name.str.extract('([A-Za-z]+)\.', expand=False)
-        ic(this.train.head(5))
         return this
 
     @staticmethod
-    def remove_duplicate(this) -> None:
+    def remove_duplicate(this) -> {}:
         a = []
         for these in [this.train, this.test]:
             a += list(set(these['Title']))
-        a = list(set(a))
-        print(f'>>>{a}')
+        #print(f'>>>{a}')
         '''
         Royal : ['Countess', 'Lady', 'Sir']
         Rare : ['Capt', 'Col', 'Don', 'Dr', 'Major', 'Rev', 'Jonkheer', 'Dona', 'Mme' ]
@@ -87,7 +89,7 @@ class TitanicModel(object):
         Master
         Mrs
         '''
-        title_mapping = {'Mr': 1, 'Ms': 2, 'Mrs': 3, 'Master': 4, 'Royal': 5, 'Rare': 6}
+        title_mapping = {'Mr': 1, 'Ms': 2, 'Mrs': 3, 'Master': 4, 'Royal': 5, 'Rare': 6}#Map을 사용하기위해 {}로 표현
         return title_mapping
 
     @staticmethod
@@ -99,21 +101,26 @@ class TitanicModel(object):
             these['Title'] = these['Title'].replace(['Miss'], 'Ms')
             # Master 는 변화없음
             # Mrs 는 변화없음
-            these['Title'] = these['Title'].fillna(0)
-            these['Title'] = these['Title'].map(title_mapping)
+            these['Title'] = these['Title'].fillna(0)#종류 6가지에 해당되지 않는 값이 아예 없는 이름들은 0으로 처리한다
+            these['Title'] = these['Title'].map(title_mapping)# 키 값에 해당되는 element들을 value값으로 바꾼다.
         return this
 
     @staticmethod
     def sex_nominal(this) -> object:
         for these in [this.train, this.test]:
-            gander_mapping = {'male': 0, 'femail': 1}
-            these['Gender'] = these['Sex'].map(gander_mapping)
+            gander_mapping = {'male': 0, 'female': 1}
+            these['Gender'] = these['Sex'].map(gander_mapping)#map 은 male -> 0 으로 바꾸는 기능을 갖고있는 메소드이다.
+            #값을 바꾼 컬럼인 'Sex'를 바탕으로 새로운 'Gender'컬럼으로 할당한다.
         return this
 
     @staticmethod
-    def embarked_nominal(this) -> object:
-        embarked_mapping = {'S': 1, 'C': 2, 'Q': 3} #null값은 가우스의 분포에 따라 's'로 분류하기로 한다.
-        this.train = this.train.fillna({'Embarked': 'S'})
+    def embarked_nominal(this) -> object:#목적: 비어있는 null 값을 채우기 위함 (Null의 값이 있을 경우 데이터를 분석하지 못하기 때문에 값을 근사값 범위로 채운다)
+        for these in [this.train, this.test]:
+            embarked_mapping = {'S': 1, 'C': 2, 'Q': 3} #null값은 가우스의 분포에 따라 가장 많은 값인 's'로 분류하기로 한다.
+            these['Embarked'] = these['Embarked'].map(embarked_mapping)
+            this.train = this.train.fillna({'Embarked': 'S'})
+            #{'Embarked' : 's'} -> 'Embarked의 null값들을 's'로 분류한다는 의미
+            #fillna -> null(na)값을 채운다(fill)라는 의미             
         return this
 
     @staticmethod
