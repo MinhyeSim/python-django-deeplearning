@@ -36,21 +36,21 @@ class TitanicModel(object):
         return this
 
     @staticmethod
-    def print_this(this):
-        print('*' * 100)
-        ic(f'1.Train의 타입 : {type(this.train)}\n')
-        ic(f'2.Train의 컬럼 : {this.train.columns}\n')#columns의 syntext: ()이 없으니까 property ()있으면 메소드
-        ic(f'3.Train의 상위 1개 : {this.train.head(1)}\n')
-        ic(f'4.Train의 null의 개수 : {this.train.isnull().sum()}\n')
-        ic(f'5.Test의 타입 : {type(this.test)}\n')
-        ic(f'6.Test의 컬럼 : {this.test.columns}\n')
-        ic(f'7.Test의 상위 1개 :{this.test.head(1)}\n')
-        ic(f'8.Test의 null의 개수 : {this.test.isnull().sum()}\n')
-        ic(f'9.id의 타입 : {type(this.id)}\n')
-        ic(f'10.id의 상위 10개 : {this.id[:10]}\n')
-        print('*' * 100)
+    def df_info(this):
+        [ic(f'{i.info()}') for i in [this.train, this.test]]
 
-  
+    @staticmethod
+    def null_check(this):
+        [ic(f'{i.isnull().sum()}') for i in [this.train, this.test]]
+
+    @staticmethod
+    def id_info(this):
+        ic(f'9. id 의 타입  {type(this.id)}')
+
+    #@staticmethod
+    #def kwargs_sample(this, **kwargs) -> None:
+     #   ic(type(kwargs))
+      #  {print(''.join(f'key: {i},val : {j}')) for i, j in kwargs.items()}
 
     @staticmethod
     def drop_feature(this, *feature) -> object:
