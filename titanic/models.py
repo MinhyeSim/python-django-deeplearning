@@ -27,6 +27,8 @@ class TitanicModel(object):
         this = self.sex_nominal(this)
         this = self.drop_feature(this, 'Sex')
         this = self.embarked_nominal(this)
+        this = self.age_ratio(this)
+        this = self.drop_feature(this, 'Age')
 
 
 
@@ -120,7 +122,7 @@ class TitanicModel(object):
             these['Embarked'] = these['Embarked'].map(embarked_mapping)
             this.train = this.train.fillna({'Embarked': 'S'})
             #{'Embarked' : 's'} -> 'Embarked의 null값들을 's'로 분류한다는 의미
-            #fillna -> null(na)값을 채운다(fill)라는 의미             
+            #fillna -> null(na)값을 채운다(fill)라는 의미
         return this
 
     @staticmethod
@@ -131,12 +133,12 @@ class TitanicModel(object):
                        'Young Adult': 5, 'Adult': 6, 'Senior': 7}
         train['Age'] = train['Age'].fillna(-0.5)
         test['Age'] = test['Age'].fillna(-0.5)
-        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf]
+        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf] #np.inf는 나이를 알 수 없는 상태이다.
         labels = ['Unknown', 'Baby', 'Child', 'Teenager', 'Student', 'Young Adult', 'Adult', 'Senior']
-        for these in train, test:
+        for these in [train, test]:
             # pd.cut() 을 사용하시오. 다른 곳은 고치지 말고 다음 두 줄만 코딩하시오
-            these['AgeGroup'] = None  # pd.cut() 을 사용
-            these['AgeGroup'] = None  # map() 을 사용
+            these['Age'] = pd.cut(these['Age'], bins, labels=labels)
+            these['AgeGroup'] = these['Age'].map(age_mapping)
         return this
 
     @staticmethod
