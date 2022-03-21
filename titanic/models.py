@@ -5,7 +5,7 @@ from context.models import Model
 import numpy as np
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
-from sklearn.model_selection RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 class TitanicModel(object):
     model = Model()
@@ -32,10 +32,11 @@ class TitanicModel(object):
         this = self.age_ratio(this)
         this = self.drop_feature(this, 'Age')
         this = self.fare_ratio(this)
-
-
-
-        self.df_info(this)
+        this = self.drop_feature(this, 'Fare')
+        k_fold = self.create_k_fold()
+        accuracy = self.get_accuracy(this, k_fold)
+        ic(accuracy)
+        #self.df_info(this)
         return this
 
     @staticmethod
@@ -120,12 +121,13 @@ class TitanicModel(object):
 
     @staticmethod
     def embarked_nominal(this) -> object:#목적: 비어있는 null 값을 채우기 위함 (Null의 값이 있을 경우 데이터를 분석하지 못하기 때문에 값을 근사값 범위로 채운다)
+        this.train = this.train.fillna({'Embarked': 'S'})
+        #{'Embarked' : 's'} -> 'Embarked의 null값들을 's'로 분류한다는 의미
+        #fillna -> null(na)값을 채운다(fill)라는 의미
         for these in [this.train, this.test]:
             embarked_mapping = {'S': 1, 'C': 2, 'Q': 3} #null값은 가우스의 분포에 따라 가장 많은 값인 's'로 분류하기로 한다.
             these['Embarked'] = these['Embarked'].map(embarked_mapping)
-            this.train = this.train.fillna({'Embarked': 'S'})
-            #{'Embarked' : 's'} -> 'Embarked의 null값들을 's'로 분류한다는 의미
-            #fillna -> null(na)값을 채운다(fill)라는 의미
+
         return this
 
     @staticmethod
@@ -159,3 +161,12 @@ class TitanicModel(object):
     @staticmethod
     def pclass_ordinal(this) -> object:
         return this
+
+    @staticmethod
+    def create_k_fold() -> object:
+        return KFold(n_splits=10, shuffle=True, random_state=0)
+
+    @staticmethod
+    def get_accuracy(this, k_fold):
+        score = cross_val_score(RandomForestClassifier(), this.train, this.label, cv=k_fold, n_jobs=1, scoring='accuracy')
+        return round(np.mean(score)*100, 2)
