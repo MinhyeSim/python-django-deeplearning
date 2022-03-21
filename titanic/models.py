@@ -39,6 +39,19 @@ class TitanicModel(object):
         #self.df_info(this)
         return this
 
+    def learning(self, train_fname, test_fname):
+        this = self.preprocess(train_fname, test_fname)
+        k_fold = self.create_k_fold()
+        ic(f'사이킷런 알고리즘 정확도 : {self.get_accuracy(this, k_fold)}')
+        self.submit(this)
+
+    @staticmethod
+    def submit(this):
+        clf = RandomForestClassifier()
+        clf.fit(this.train, this.label)
+        prediction = clf.predict(this.test)
+        pd.DataFrame({'PassengerId': this.id, 'Survived': prediction}).to_csv('./save/submission.csv', index=False)
+
     @staticmethod
     def df_info(this):
         [ic(f'{i.info()}') for i in [this.train, this.test]]
@@ -152,7 +165,7 @@ class TitanicModel(object):
         this.train['FareBand'] = pd.qcut(this.train['Fare'], 4)
         # print(f'qcut 으로 bins 값 설정 {this.train["FareBand"].head()}')
         bins = [-1, 8, 15, 31, np.inf]
-        fare_mapping = {1,2,3,4}
+        fare_mapping = {1, 2, 3, 4}
         for these in [this.train, this.test]:
             these['FareBand'] = these['Fare'].fillna(1)
             these['FareBand'] = pd.qcut(these['FareBand'],4,fare_mapping)
@@ -170,3 +183,5 @@ class TitanicModel(object):
     def get_accuracy(this, k_fold):
         score = cross_val_score(RandomForestClassifier(), this.train, this.label, cv=k_fold, n_jobs=1, scoring='accuracy')
         return round(np.mean(score)*100, 2)
+
+
