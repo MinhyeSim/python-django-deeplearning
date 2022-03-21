@@ -3,7 +3,9 @@ from icecream import ic
 from context.domains import Dataset
 from context.models import Model
 import numpy as np
-
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection RandomForestClassifier
 
 class TitanicModel(object):
     model = Model()
@@ -29,6 +31,7 @@ class TitanicModel(object):
         this = self.embarked_nominal(this)
         this = self.age_ratio(this)
         this = self.drop_feature(this, 'Age')
+        this = self.fare_ratio(this)
 
 
 
@@ -133,10 +136,10 @@ class TitanicModel(object):
                        'Young Adult': 5, 'Adult': 6, 'Senior': 7}
         train['Age'] = train['Age'].fillna(-0.5)
         test['Age'] = test['Age'].fillna(-0.5)
-        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf] #np.inf는 나이를 알 수 없는 상태이다.
+        bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf]#np.inf는 나이를 알 수 없는 상태이다.
         labels = ['Unknown', 'Baby', 'Child', 'Teenager', 'Student', 'Young Adult', 'Adult', 'Senior']
         for these in [train, test]:
-            # pd.cut() 을 사용하시오. 다른 곳은 고치지 말고 다음 두 줄만 코딩하시오
+            # pd.cut() 을 사용 하시오. 다른 곳은 고치지 말고 다음 두 줄만 코딩 하시오.
             these['Age'] = pd.cut(these['Age'], bins, labels=labels)
             these['AgeGroup'] = these['Age'].map(age_mapping)
         return this
@@ -147,6 +150,10 @@ class TitanicModel(object):
         this.train['FareBand'] = pd.qcut(this.train['Fare'], 4)
         # print(f'qcut 으로 bins 값 설정 {this.train["FareBand"].head()}')
         bins = [-1, 8, 15, 31, np.inf]
+        fare_mapping = {1,2,3,4}
+        for these in [this.train, this.test]:
+            these['FareBand'] = these['Fare'].fillna(1)
+            these['FareBand'] = pd.qcut(these['FareBand'],4,fare_mapping)
         return this
 
     @staticmethod
